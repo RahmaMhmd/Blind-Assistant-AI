@@ -1,4 +1,5 @@
 [core]
-    remote = localstorage
-['remote "localstorage"']
-    url = ../../Blind-Assistant-DVC-Storage
+    remote = gdrive
+['remote "gdrive"']
+    url = gdrive://1p-RgySBTHHky1NH42xsv2yN2h2kemRbm/dvcstore
+    gdrive_client_id = 424710530893-i5pmoukfnoc76kab8dr8jsluahmb1ngf.apps.googleusercontent.com
