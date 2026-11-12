@@ -25,6 +25,7 @@ class ErrorCode(str, Enum):
     INVALID_QR_CODE = "ERR_INVALID_QR_CODE"
     DESTINATION_NOT_FOUND = "ERR_DESTINATION_NOT_FOUND"
     ROUTE_CALCULATION_FAILED = "ERR_ROUTE_CALCULATION_FAILED"
+    LOW_CONFIDENCE = "ERR_LOW_CONFIDENCE"
 
 
 ERROR_MESSAGES_AR: dict[ErrorCode, str] = {
@@ -82,6 +83,9 @@ ERROR_MESSAGES_AR: dict[ErrorCode, str] = {
 
     ErrorCode.ROUTE_CALCULATION_FAILED:
         "تعذر حساب المسار إلى الوجهة المطلوبة",
+
+    ErrorCode.LOW_CONFIDENCE:
+        "لم أتمكن من التأكد من النتيجة، يرجى إعادة المحاولة بشكل أوضح",
 }
 
 

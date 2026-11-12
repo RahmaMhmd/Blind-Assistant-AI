@@ -242,6 +242,8 @@ def error_http_status(
 
         ErrorCode.ROUTE_CALCULATION_FAILED: 422,
 
+        ErrorCode.LOW_CONFIDENCE: 422,
+
         ErrorCode.TOO_MANY_REQUESTS: 429,
 
         ErrorCode.INTERNAL_SERVER_ERROR: 500,
