@@ -1,11 +1,14 @@
 from src.contracts import InferenceFeature, OcrResult
+from src.service.routes.paths import infer_path
 
-OCR_PATH = f"/v1/infer/{InferenceFeature.OCR.value}"
+feature_path = infer_path
+OCR_PATH = infer_path(InferenceFeature.OCR)
 
 
 class StubHandler:
     feature = InferenceFeature.OCR
     model_name = "stub"
+    model_version = "0.0.0-stub"
 
     def __init__(self, action):
         self.action = action

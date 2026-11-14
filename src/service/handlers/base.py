@@ -1,8 +1,6 @@
 from typing import Protocol
 
-from pydantic import BaseModel
-
-from src.contracts import InferenceFeature
+from src.contracts import FeatureResult, InferenceFeature
 
 from ..schemas import InferenceRequest
 
@@ -10,5 +8,6 @@ from ..schemas import InferenceRequest
 class ModelHandler(Protocol):
     feature: InferenceFeature
     model_name: str
+    model_version: str
 
-    async def predict(self, payload: InferenceRequest) -> BaseModel: ...
+    async def predict(self, payload: InferenceRequest) -> FeatureResult: ...

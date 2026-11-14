@@ -8,12 +8,13 @@ from ..pipeline import run_inference
 from ..registry import HandlerRegistry
 from ..schemas import InferenceRequest
 from ..settings import ServiceSettings
+from .paths import API_V1_PREFIX, INFER_ROUTE
 
-router = APIRouter(prefix="/v1")
+router = APIRouter(prefix=API_V1_PREFIX)
 
 
 @router.post(
-    "/infer/{feature}",
+    INFER_ROUTE,
     response_model=SuccessResponse,
     responses=ERROR_RESPONSES,
 )

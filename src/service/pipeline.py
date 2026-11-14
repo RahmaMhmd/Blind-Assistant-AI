@@ -20,10 +20,12 @@ async def run_inference(
     registry: HandlerRegistry,
     settings: ServiceSettings,
 ) -> SuccessResponse:
+    """check input and run model handler"""
     validate_feature_payload(
         feature,
         image_base64=payload.imageBase64,
         user_speech=payload.userSpeech,
+        max_image_bytes=settings.max_image_bytes,
     )
 
     handler = registry.resolve(feature)
@@ -39,6 +41,7 @@ async def run_inference(
     return SuccessResponse(
         requestId=ensure_context(request),
         modelName=handler.model_name,
+        modelVersion=handler.model_version,
         processingTimeMs=elapsed_ms(request),
-        data=result.model_dump(),
+        data=result.model_dump(mode="json"),
     )

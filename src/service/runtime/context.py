@@ -1,19 +1,20 @@
-import re
 import time
 import uuid
 
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
-REQUEST_ID_HEADER = "X-Request-ID"
+from src.contracts.patterns import REQUEST_ID_PATTERN
 
-_SAFE_REQUEST_ID = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
+REQUEST_ID_HEADER = "X-Request-ID"
+MS_PER_SECOND = 1000
 
 
 def ensure_context(request: Request) -> str:
+    """set request id and start time"""
     if not hasattr(request.state, "request_id"):
         incoming = request.headers.get(REQUEST_ID_HEADER, "")
-        valid = _SAFE_REQUEST_ID.match(incoming)
+        valid = REQUEST_ID_PATTERN.match(incoming)
 
         request.state.request_id = incoming if valid else str(uuid.uuid4())
         request.state.started_at = time.perf_counter()
@@ -24,7 +25,7 @@ def ensure_context(request: Request) -> str:
 def elapsed_ms(request: Request) -> float:
     ensure_context(request)
 
-    return (time.perf_counter() - request.state.started_at) * 1000
+    return (time.perf_counter() - request.state.started_at) * MS_PER_SECOND
 
 
 class RequestContextMiddleware(BaseHTTPMiddleware):

@@ -1,13 +1,13 @@
-import base64
-
 import pytest
 from fastapi.testclient import TestClient
 
 from src.contracts import ErrorResponse
 from src.service.main import create_app
 from src.service.registry import HandlerRegistry
+from src.service.runtime.context import REQUEST_ID_HEADER
 from src.service.settings import ServiceSettings
-from support import StubHandler
+from tests.helpers import image_body
+from tests.service.support import StubHandler
 
 
 @pytest.fixture
@@ -23,9 +23,7 @@ def make_client():
 
 @pytest.fixture
 def valid_body():
-    raw = base64.b64encode(b"\xff\xd8\xffsample").decode("ascii")
-
-    return {"imageBase64": f"data:image/jpeg;base64,{raw}"}
+    return image_body()
 
 
 @pytest.fixture
@@ -37,7 +35,7 @@ def assert_error_shape():
         assert set(body) == set(ErrorResponse.model_fields)
         assert body["success"] is False
         assert body["errorCode"] == code
-        assert body["requestId"] == response.headers["X-Request-ID"]
+        assert body["requestId"] == response.headers[REQUEST_ID_HEADER]
 
         return body
 

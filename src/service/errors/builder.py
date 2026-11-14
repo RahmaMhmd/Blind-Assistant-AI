@@ -13,6 +13,7 @@ def error_response(
     model_name: str | None = None,
     status_code: int | None = None,
 ) -> JSONResponse:
+    """make standard json error response"""
     status = status_code or error_http_status(error_code)
     request_id = ensure_context(request)
 
