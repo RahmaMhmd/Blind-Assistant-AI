@@ -10,6 +10,7 @@ COPY requirements-service.txt .
 RUN pip install --no-cache-dir -r requirements-service.txt
 
 COPY src ./src
+COPY contracts ./contracts
 
 RUN useradd --system --no-create-home service
 USER service
