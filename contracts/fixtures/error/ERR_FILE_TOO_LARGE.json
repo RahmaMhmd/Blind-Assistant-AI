@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "statusCode": 413,
+  "errorCode": "ERR_FILE_TOO_LARGE",
+  "message": "The image is too large. Take a new photo.",
+  "details": [],
+  "requestId": "9b2c6f0e-3a8d-4c5e-9f21-0d6a7b8c1e24",
+  "timestamp": "2026-11-13T10:30:00.000Z"
+}
