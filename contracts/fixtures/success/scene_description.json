@@ -1,0 +1,8 @@
+{
+  "description": "غرفة فيها ترابيزة وكرسيين",
+  "detectedObjects": [
+    "table",
+    "chair"
+  ],
+  "confidence": 0.95
+}

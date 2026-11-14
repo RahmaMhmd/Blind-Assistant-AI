@@ -1,0 +1,12 @@
+class Problem:
+    IMAGE_REQUIRED = "An image is required"
+    IMAGE_NOT_ALLOWED = "This feature takes speech text and not an image"
+    SPEECH_REQUIRED = "Speech text is required"
+    SPEECH_NOT_ALLOWED = "This feature takes an image and not speech text"
+    IMAGE_BLANK = "The image cannot be blank"
+    SPEECH_BLANK = "The speech text cannot be blank"
+    IMAGE_FORMAT = "The image must be a JPEG or PNG data uri"
+    IMAGE_DATA = "The image data is not valid base64"
+    IMAGE_EMPTY = "The image is empty"
+    IMAGE_SIZE = "The image is larger than the allowed size"
+    IMAGE_CONTENT = "The file content does not match the image type"

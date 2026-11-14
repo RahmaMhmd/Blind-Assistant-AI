@@ -1,0 +1,9 @@
+{
+  "success": false,
+  "statusCode": 400,
+  "errorCode": "ERR_INVALID_QR_CODE",
+  "message": "This QR code is not valid. Try another one.",
+  "details": [],
+  "requestId": "9b2c6f0e-3a8d-4c5e-9f21-0d6a7b8c1e24",
+  "timestamp": "2026-11-13T10:30:00.000Z"
+}

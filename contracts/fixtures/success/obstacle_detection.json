@@ -1,0 +1,8 @@
+{
+  "hazardDetected": true,
+  "obstacleType": "chair",
+  "distanceMeters": 1.5,
+  "hapticAlertPattern": "LIGHT_VIBRATION",
+  "spokenWarning": "فيه كرسي قدامك",
+  "confidence": 0.91
+}

@@ -1,0 +1,7 @@
+{
+  "userInput": "اقرأ الورقة دي",
+  "detectedIntent": "READ_DOCUMENT",
+  "confidence": 0.97,
+  "spokenResponse": "تمام هفتح الكاميرا تقرأ الورقة",
+  "actionToTriggerOnMobile": "OPEN_CAMERA_OCR"
+}
