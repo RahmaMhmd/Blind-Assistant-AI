@@ -1,0 +1,10 @@
+torch
+torchvision
+timm
+transformers
+onnx
+onnxruntime
+datasets
+pillow
+tqdm
+numpy
