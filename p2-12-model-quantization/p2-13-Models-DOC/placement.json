@@ -1,0 +1,182 @@
+{
+  "version": "1.0.0",
+  "phase": "P2-17",
+  "target_integration": "P2-18",
+  "compliance": {
+    "allowed_licenses": [
+      "Apache-2.0",
+      "MIT"
+    ],
+    "excluded_licenses": [
+      "AGPL-3.0",
+      "GPL-3.0",
+      "CC-BY-NC-4.0",
+      "Apple-AMLR"
+    ]
+  },
+  "vision_features": {
+    "object_detection": {
+      "enabled": false,
+      "activation_mode": "continuous",
+      "handler_class": "ObjectDetectionHandler",
+      "primary": {
+        "model_id": "rtdetrv2_r18_int8",
+        "source": "PekingU/rtdetr_v2_r18vd",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "int8",
+        "input_size": [
+          640,
+          640
+        ],
+        "size_mb": 46.0,
+        "params": "20.2M",
+        "license": "Apache-2.0"
+      },
+      "fallback": {
+        "model_id": "dfine_small_int8",
+        "source": "ustc-community/dfine-small-coco",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "int8",
+        "input_size": [
+          640,
+          640
+        ],
+        "size_mb": 36.19,
+        "params": "10.4M",
+        "license": "Apache-2.0"
+      }
+    },
+    "obstacle_detection": {
+      "enabled": false,
+      "activation_mode": "continuous",
+      "handler_class": "ObstacleDetectionHandler",
+      "primary": {
+        "model_id": "dfine_small_obstacles_int8",
+        "source": "ustc-community/dfine-small-coco",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "int8",
+        "input_size": [
+          640,
+          640
+        ],
+        "size_mb": 36.19,
+        "params": "10.4M",
+        "license": "Apache-2.0"
+      },
+      "fallback": {
+        "model_id": "efficientdet_lite0_int8",
+        "source": "mediapipe/efficientdet-lite0",
+        "placement": "local",
+        "runtime": "litert",
+        "precision": "int8",
+        "input_size": [
+          320,
+          320
+        ],
+        "params": "~4.0M",
+        "license": "Apache-2.0"
+      }
+    },
+    "depth_estimation": {
+      "enabled": false,
+      "activation_mode": "continuous",
+      "handler_class": "DepthEstimationHandler",
+      "primary": {
+        "model_id": "depth_anything_v2_small",
+        "source": "depth-anything/Depth-Anything-V2-Small-hf",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "fp16",
+        "input_size": [
+          518,
+          518
+        ],
+        "params": "24.8M",
+        "license": "Apache-2.0"
+      },
+      "fallback": {
+        "model_id": "depth_anything_v2_small_cloud",
+        "source": "depth-anything/Depth-Anything-V2-Small-hf",
+        "placement": "cloud",
+        "runtime": "onnxruntime",
+        "precision": "fp32",
+        "input_size": [
+          518,
+          518
+        ],
+        "params": "24.8M",
+        "license": "Apache-2.0"
+      }
+    },
+    "object_tracking": {
+      "enabled": false,
+      "activation_mode": "continuous",
+      "handler_class": "ObjectTrackingHandler",
+      "primary": {
+        "model_id": "botsort_cmc_orb",
+        "source": "NirAharon/BoT-SORT",
+        "placement": "local",
+        "runtime": "native_algorithm",
+        "cmc_method": "orb",
+        "use_reid": false,
+        "precision": "n/a",
+        "size_mb": 0.0,
+        "license": "MIT"
+      },
+      "fallback": {
+        "model_id": "bytetrack",
+        "source": "ifzhang/ByteTrack",
+        "placement": "local",
+        "runtime": "native_algorithm",
+        "precision": "n/a",
+        "size_mb": 0.0,
+        "license": "MIT"
+      }
+    },
+    "egyptian_currency": {
+      "enabled": false,
+      "activation_mode": "on_demand",
+      "handler_class": "EgyptianCurrencyHandler",
+      "classes": [
+        "5_EGP",
+        "10_EGP",
+        "20_EGP",
+        "50_EGP",
+        "100_EGP",
+        "200_EGP"
+      ],
+      "primary": {
+        "model_id": "dfine_small_egp_currency_int8",
+        "source": "ustc-community/dfine-small-coco",
+        "dataset": "egyptiris/egyptian-currency",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "int8",
+        "input_size": [
+          640,
+          640
+        ],
+        "size_mb": 36.19,
+        "params": "10.4M",
+        "license": "Apache-2.0"
+      },
+      "fallback": {
+        "model_id": "mobilenetv3_large_egp_currency_int8",
+        "source": "timm/mobilenetv3_large_100.ra_in1k",
+        "placement": "local",
+        "runtime": "onnxruntime",
+        "precision": "int8",
+        "input_size": [
+          224,
+          224
+        ],
+        "size_mb": 5.5,
+        "params": "5.51M",
+        "license": "Apache-2.0"
+      }
+    }
+  }
+}

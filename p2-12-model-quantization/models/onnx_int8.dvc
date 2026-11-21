@@ -1,0 +1,6 @@
+outs:
+- md5: 98be8c157388a5fb450642e2d933616a.dir
+  size: 91952119
+  nfiles: 3
+  hash: md5
+  path: onnx_int8
