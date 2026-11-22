@@ -1,0 +1,6 @@
+outs:
+- md5: c24554a432124546235cd5f861e41993.dir
+  size: 2026274
+  nfiles: 500
+  hash: md5
+  path: ocr-text
