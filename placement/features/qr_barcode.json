@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P7-09",
+  "verifiedOn": "2026-11-21",
+  "primary": {
+    "name": "ml-kit-barcode-scanning",
+    "kind": "model",
+    "version": null,
+    "runtime": "mlkit",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Google APIs Terms of Service",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://developers.google.com/ml-kit/terms",
+      "verifiedOn": "2026-11-21"
+    },
+    "sizeMb": 2.4,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "ML Kit terms allow commercial use at no cost. bundled model adds about 2.4 MB or 0.5 MB via Google Play Services"
+  },
+  "fallback": {
+    "name": "zxing-cpp",
+    "kind": "model",
+    "version": "3.1.1",
+    "runtime": "zxing",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://pypi.org/project/zxing-cpp/",
+      "verifiedOn": "2026-11-21"
+    },
+    "sizeMb": 1.1,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "license and wheel size verified from installed zxing-cpp 3.1.1 package metadata"
+  },
+  "considered": [
+    {"name": "opencv-qrcode-detector", "outcome": "deferred", "reason": "compare on our images before dropping it"}
+  ]
+}
