@@ -6,3 +6,4 @@ PyYAML
 Pillow
 soundfile
 jiwer
+scipy>=1.13
