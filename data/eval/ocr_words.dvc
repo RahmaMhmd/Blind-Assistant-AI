@@ -1,0 +1,6 @@
+outs:
+- md5: 37115cb7f66f2c8e3bb8015cb95edb0d.dir
+  size: 4160004
+  nfiles: 85
+  hash: md5
+  path: ocr_words
