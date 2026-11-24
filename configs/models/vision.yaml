@@ -1,0 +1,26 @@
+models:
+  rtdetrv2-r18-int8:
+    task: object_detection
+    adapter: onnx_detector
+    params:
+      model_path: models/onnx_int8/rtdetrv2_r18_int8.onnx
+      input_size: 640
+      input_name: pixel_values
+      conf_threshold: 0.5
+
+  dfine-small-int8:
+    task: object_detection
+    adapter: onnx_detector
+    params:
+      model_path: models/onnx_int8/dfine_small_int8.onnx
+      input_size: 640
+      input_name: pixel_values
+      conf_threshold: 0.5
+
+  mobilenetv3-large-int8:
+    task: image_classification
+    adapter: onnx_classifier
+    params:
+      model_path: models/onnx_int8/mobilenetv3_large_int8.onnx
+      input_size: 224
+      input_name: pixel_values

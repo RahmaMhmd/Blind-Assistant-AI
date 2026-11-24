@@ -1,8 +1,12 @@
 from .adapters.base import Adapter
 from .adapters.camelbert import CamelBertAdapter
 from .adapters.fake import FakeAdapter
+from .adapters.keyword_spotter import KeywordSpotterAdapter
 from .adapters.mobilenet import MobileNetAdapter
+from .adapters.onnx_classifier import OnnxClassifierAdapter
+from .adapters.onnx_detector import OnnxDetectorAdapter
 from .adapters.paddle_recognizer import PaddleRecognizerAdapter
+from .adapters.scene_vlm import SceneVlmAdapter
 from .adapters.whisper import WhisperAdapter
 from .config import load_config
 
@@ -12,6 +16,10 @@ ADAPTERS = {
     "paddle_recognizer": PaddleRecognizerAdapter,
     "mobilenet": MobileNetAdapter,
     "camelbert": CamelBertAdapter,
+    "onnx_detector": OnnxDetectorAdapter,
+    "onnx_classifier": OnnxClassifierAdapter,
+    "keyword_spotter": KeywordSpotterAdapter,
+    "scene_vlm": SceneVlmAdapter,
 }
 
 

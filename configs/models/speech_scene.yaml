@@ -1,0 +1,36 @@
+models:
+  whisper-large-v3-turbo:
+    task: speech_recognition
+    adapter: whisper
+    params:
+      model_id: openai/whisper-large-v3-turbo
+      language: arabic
+      sampling_rate: 16000
+      chunk_length_s: 30
+
+  sherpa-kws-default:
+    task: keyword_spotting
+    adapter: keyword_spotter
+    params:
+      tokens: models/kws/tokens.txt
+      encoder: models/kws/encoder.onnx
+      decoder: models/kws/decoder.onnx
+      joiner: models/kws/joiner.onnx
+      keywords_file: models/kws/keywords.txt
+      sampling_rate: 16000
+
+  qwen25-vl-scene:
+    task: scene_description
+    adapter: scene_vlm
+    params:
+      model_id: Qwen/Qwen2.5-VL-7B-Instruct
+      prompt: Describe the scene in front of a blind person in clear Arabic
+      max_new_tokens: 80
+
+  moondream2-scene:
+    task: scene_description
+    adapter: scene_vlm
+    params:
+      model_id: vikhyatk/moondream2
+      prompt: Describe key objects and hazards in front of a blind person
+      max_new_tokens: 80
