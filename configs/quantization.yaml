@@ -1,0 +1,54 @@
+paths:
+  calibration_dir: data/calibration
+  fp32_dir: models/onnx_fp32
+  int8_dir: models/onnx_int8
+
+calibration:
+  dataset: detection-datasets/coco
+  split: val
+  count: 200
+  quality: 95
+
+benchmark:
+  conf_threshold: 0.5
+  iou_threshold: 0.5
+  warmup_runs: 3
+  max_images: 100
+
+tracking:
+  database: mlflow.db
+  experiment: Blind Assistant Experiments
+  run_type: quantization
+
+models:
+  rtdetrv2_r18:
+    task: detection
+    source: PekingU/rtdetr_v2_r18vd
+    input_size: 640
+    input_name: pixel_values
+    outputs:
+      - logits
+      - pred_boxes
+    opset: 17
+    strategy: backbone_tail
+    tail_count: 13
+  dfine_small:
+    task: detection
+    source: ustc-community/dfine-small-coco
+    input_size: 640
+    input_name: pixel_values
+    outputs:
+      - logits
+      - pred_boxes
+    opset: 17
+    strategy: dfine_mixed
+  mobilenetv3_large:
+    task: classification
+    source: hf-hub:timm/mobilenetv3_large_100.ra_in1k
+    input_size: 224
+    input_name: pixel_values
+    outputs:
+      - logits
+    opset: 17
+    strategy: conv_all
+    quant_format: qdq
