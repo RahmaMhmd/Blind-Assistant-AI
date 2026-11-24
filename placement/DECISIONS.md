@@ -4,11 +4,11 @@
 | depth_estimation | tentative | depth-anything-v2-small (local, Apache-2.0, 94.6 MB) | depth-anything-v2-small-cloud (cloud, Apache-2.0, 94.6 MB) | P4-05 |
 | image_quality | tentative | opencv-laplacian-brightness (local, Apache-2.0, 0.0 MB) | mobilenetv3-quality-classifier (local, BSD-3-Clause, 9.8 MB) | P4-08 |
 | keyword_spotter | tentative | sherpa-onnx-kws (local, Apache-2.0, 5.0 MB) | silero-vad (local, MIT, 10.4 MB) | P4-01 |
-| object_detection | tentative | rtdetrv2-r18-int8 (local, Apache-2.0, 46.0 MB) | dfine-small-int8 (local, Apache-2.0, 36.19 MB) | P4-02 |
+| object_detection | tentative | dfine-small-int8 (local, Apache-2.0, 36.43 MB) | rtdetrv2-r18-cloud (cloud, Apache-2.0, 46.6 MB) | P4-02 |
 | object_tracking | tentative | botsort-cmc-orb (local, MIT, 0.0 MB) | bytetrack (local, MIT, 0.0 MB) | P4-05 |
 | obstacle_detection | tentative | dfine-small-obstacles-int8 (local, Apache-2.0, 36.19 MB) | efficientdet-lite0-int8 (local, Apache-2.0, 4.4 MB) | P4-05 |
 | ocr | tentative | paddleocr-ppocrv5-arabic-mobile (local, Apache-2.0, 12.8 MB) | paddleocr-vl (cloud, Apache-2.0, 2045.0 MB) | P4-03 |
-| qr_barcode | tentative | ml-kit-barcode-scanning (local, Google APIs Terms of Service, 2.4 MB) | zxing-cpp (local, Apache-2.0, 1.1 MB) | P7-09 |
+| qr_barcode | tentative | zxing-cpp (local, Apache-2.0, 1.1 MB) | ml-kit-barcode-scanning (local, Google APIs Terms of Service, 2.4 MB) | P7-09 |
 | scene_description | tentative | qwen2.5-vl-7b-instruct (cloud, Apache-2.0, 15816.1 MB) | internvl3.5-8b (cloud, Apache-2.0, 16266.6 MB) | P4-07 |
 | speech_recognition | tentative | whisper-large-v3-turbo (cloud, MIT, 1542.9 MB) | whisper-large-v3-arabic (cloud, MIT, 5888.3 MB) | P4-01 |
 | voice_command | tentative | camelbert-da-intent (cloud, Apache-2.0, 418.5 MB) | qwen3-1.7b-instruct (cloud, Apache-2.0, 3875.3 MB) | P4-01 |
@@ -27,7 +27,7 @@ Considered
 - ocr: qari-ocr deferred - 2B model on Qwen2-VL with Apache-2.0 verified on NAMAA-Space/Qari-OCR-0.1-VL-2B-Instruct. second cloud candidate to compare on our data
 - ocr: baseer research_only - 3B model on Qwen2.5-VL-3B. base repo is gated and public variant Misraj/Baseer__Nakba is CC-BY-NC-SA-4.0 non-commercial
 - ocr: surya research_only - 650M model. code is Apache-2.0 and weights use modified AI Pubs OpenRAIL-M v0.1 with a 5M USD annual revenue or funding cap
-- qr_barcode: opencv-qrcode-detector deferred - compare on our images before dropping it
+- qr_barcode: opencv-qrcode-detector deferred - scored 45.45 pct QR and 11.43 pct barcode on locked set
 - scene_description: moondream2 baseline - Apache-2.0 1.9B small fast VLM baseline
 - scene_description: florence-2-large deferred - MIT weak Arabic output
 - scene_description: smolvlm2-500m deferred - Apache-2.0 too small for good Arabic descriptions
