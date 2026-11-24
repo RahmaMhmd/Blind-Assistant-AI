@@ -86,6 +86,9 @@ class MainActivity : AppCompatActivity() {
         }
         withContext(Dispatchers.Main) { outputView.text = "Running mlkit_barcode" }
         results.add(MlKitBarcodeRunner.run(ctx, cfg.barcodeWidth, cfg.barcodeHeight, cfg.warmupRuns, cfg.timedRuns))
+        withContext(Dispatchers.Main) { outputView.text = "Running mlkit_text" }
+        results.add(MlKitTextRunner.run(ctx, "en", cfg.warmupRuns))
+        results.add(MlKitTextRunner.run(ctx, "ar", cfg.warmupRuns))
         val after = DeviceMetrics.capture(ctx)
         val saved = ReportWriter.write(ctx, cfg.reportFile, before, after, results)
         val head = "Device ${before.model} Temp ${before.tempC} to ${after.tempC} C"
