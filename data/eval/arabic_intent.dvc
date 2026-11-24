@@ -1,0 +1,6 @@
+outs:
+- md5: 59da2cede5f94d572d82f508cc165a71.dir
+  size: 17415
+  nfiles: 121
+  hash: md5
+  path: arabic_intent

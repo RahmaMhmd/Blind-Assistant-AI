@@ -1,0 +1,6 @@
+outs:
+- md5: 106c98140e87151b450a38a9dc43d5e9.dir
+  size: 5581231
+  nfiles: 61
+  hash: md5
+  path: egyptian_asr

@@ -1,0 +1,6 @@
+outs:
+- md5: 45183c147b86f98de002ccb68003ff60.dir
+  size: 135062166
+  nfiles: 1500
+  hash: md5
+  path: voice-commands

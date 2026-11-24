@@ -30,7 +30,8 @@
           "DETECT_COLOR",
           "READ_TRAFFIC_SIGN",
           "DETECT_OBSTACLE",
-          "DETECT_EXPRESSION"
+          "DETECT_EXPRESSION",
+          "GENERAL_SPEECH"
         ],
         "transcript": null
       }
