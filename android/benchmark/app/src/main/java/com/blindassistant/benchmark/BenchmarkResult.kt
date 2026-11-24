@@ -10,6 +10,10 @@ data class ModelBenchmarkResult(
     val memDeltaMb: Double = 0.0,
     val tempBeforeC: Double = 0.0,
     val tempAfterC: Double = 0.0,
+    val correctRate: Double? = null,
+    val wrongRate: Double? = null,
+    val total: Int = 0,
+    val correct: Int = 0,
     val detail: String = ""
 ) {
     fun toJson(): JSONObject = JSONObject().apply {
@@ -19,6 +23,12 @@ data class ModelBenchmarkResult(
         put("tempBeforeC", tempBeforeC)
         put("tempAfterC", tempAfterC)
         put("detail", detail)
+        if (correctRate != null) {
+            put("correctRate", correctRate)
+            put("wrongRate", wrongRate ?: 0.0)
+            put("total", total)
+            put("correct", correct)
+        }
         if (stats != null) {
             put("meanMs", stats.meanMs)
             put("medianMs", stats.medianMs)
@@ -46,13 +56,6 @@ object BenchmarkHarness {
         }
         val after = DeviceMetrics.capture(context)
         val delta = ((after.nativeHeapMb - before.nativeHeapMb) * 100.0).toLong() / 100.0
-        return ModelBenchmarkResult(
-            name = name,
-            status = "ok",
-            stats = StatsCalculator.summarize(times),
-            memDeltaMb = delta,
-            tempBeforeC = before.tempC,
-            tempAfterC = after.tempC
-        )
+        return ModelBenchmarkResult(name, "ok", StatsCalculator.summarize(times), delta, before.tempC, after.tempC)
     }
 }

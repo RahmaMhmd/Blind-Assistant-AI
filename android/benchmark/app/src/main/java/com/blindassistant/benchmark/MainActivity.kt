@@ -59,10 +59,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun formatLine(r: ModelBenchmarkResult): String {
         val s = r.stats ?: return "${r.name} ${r.status} ${r.detail}"
+        val acc = r.correctRate?.let { String.format(Locale.US, " acc %.1f%%", it * 100.0) } ?: ""
         return String.format(
             Locale.US,
-            "%s median %.1f ms p95 %.1f ms ram %.2f MB temp %.1f C",
-            r.name, s.medianMs, s.p95Ms, r.memDeltaMb, r.tempAfterC
+            "%s median %.1f ms p95 %.1f ms%s ram %.2f MB temp %.1f C",
+            r.name, s.medianMs, s.p95Ms, acc, r.memDeltaMb, r.tempAfterC
         )
     }
 
