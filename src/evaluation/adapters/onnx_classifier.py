@@ -17,6 +17,8 @@ class OnnxClassifierAdapter:
         input_size: int = 224,
         input_name: str = "pixel_values",
         labels: list[str] | None = None,
+        mean: list[float] | None = None,
+        std: list[float] | None = None,
         session=None,
     ):
         self.name = name
@@ -24,6 +26,8 @@ class OnnxClassifierAdapter:
         self._size = int(input_size)
         self._input_name = input_name
         self._labels = labels
+        self._mean = mean
+        self._std = std
         if session is not None:
             self._session = session
         else:
@@ -33,7 +37,7 @@ class OnnxClassifierAdapter:
             self._session = ort.InferenceSession(str(path), providers=["CPUExecutionProvider"])
 
     def predict(self, sample_path: Path) -> str:
-        tensor = load_tensor(sample_path, self._size)
+        tensor = load_tensor(sample_path, self._size, self._mean, self._std)
         logits = self._session.run(None, {self._input_name: tensor})[0]
         idx = int(np.argmax(logits[0]))
         return self._labels[idx] if self._labels and idx < len(self._labels) else str(idx)

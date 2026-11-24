@@ -63,6 +63,8 @@ def test_load_tensor_shape_and_range(tmp_path: Path):
     tensor = load_tensor(img_path, 224)
     assert tensor.shape == (1, 3, 224, 224) and tensor.dtype == np.float32
     assert 0.0 <= float(tensor.min()) <= float(tensor.max()) <= 1.0
+    norm = load_tensor(img_path, 224, [0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+    assert -1.0 <= float(norm.min()) <= float(norm.max()) <= 1.0
     assert list_images(tmp_path) == [img_path]
 
 
@@ -80,8 +82,6 @@ def test_select_conv_nodes_strategies():
     assert len(select_conv_nodes(graph, "conv_all")) == 5
     assert select_conv_nodes(graph, "backbone_tail", 2) == ["/backbone/stages.3/conv1", "/backbone/stages.3/conv2"]
     assert select_conv_nodes(graph, "dfine_mixed") == ["/backbone/stages.3/conv1", "/backbone/stages.2/pw"]
-
-
 def test_detection_and_classification_metrics():
     boxes = np.array([[0.5, 0.5, 0.2, 0.2]], dtype=np.float32)
     logits = np.array([[[5.0, -5.0]]], dtype=np.float32)

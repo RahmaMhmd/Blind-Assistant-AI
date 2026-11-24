@@ -5,7 +5,13 @@ from .images import list_images, load_tensor
 from .nodes import select_conv_nodes
 
 
-def _build_reader(image_paths: list[Path], size: int, input_name: str):
+def _build_reader(
+    image_paths: list[Path],
+    size: int,
+    input_name: str,
+    mean: list[float] | None = None,
+    std: list[float] | None = None,
+):
     from onnxruntime.quantization import CalibrationDataReader
 
     class Reader(CalibrationDataReader):
@@ -15,7 +21,7 @@ def _build_reader(image_paths: list[Path], size: int, input_name: str):
         def get_next(self):
             if self._idx >= len(image_paths):
                 return None
-            tensor = load_tensor(image_paths[self._idx], size)
+            tensor = load_tensor(image_paths[self._idx], size, mean=mean, std=std)
             self._idx += 1
             return {input_name: tensor}
 
@@ -50,19 +56,26 @@ def quantize_int8(
     if not imgs:
         raise FileNotFoundError(f"no calibration images in {cdir}")
 
-    fmt_name = spec.get("quant_format", "qoperator").lower()
-    fmt = QuantFormat.QDQ if fmt_name == "qdq" else QuantFormat.QOperator
+    fmt_map = {"qdq": QuantFormat.QDQ, "qoperator": QuantFormat.QOperator}
+    cal_map = {
+        "minmax": CalibrationMethod.MinMax,
+        "entropy": CalibrationMethod.Entropy,
+        "percentile": CalibrationMethod.Percentile,
+    }
+    fmt = fmt_map[spec.get("quant_format", "qoperator").lower()]
+    cal = cal_map[spec.get("calibrate_method", "minmax").lower()]
+    reader = _build_reader(imgs, int(spec["input_size"]), spec["input_name"], spec.get("mean"), spec.get("std"))
 
     quantize_static(
         model_input=str(prep),
         model_output=str(out),
-        calibration_data_reader=_build_reader(imgs, int(spec["input_size"]), spec["input_name"]),
+        calibration_data_reader=reader,
         quant_format=fmt,
         activation_type=QuantType.QUInt8,
         weight_type=QuantType.QInt8,
         nodes_to_quantize=None if fmt == QuantFormat.QDQ else nodes,
         per_channel=True,
-        calibrate_method=CalibrationMethod.MinMax,
+        calibrate_method=cal,
     )
     prep.unlink(missing_ok=True)
     return out

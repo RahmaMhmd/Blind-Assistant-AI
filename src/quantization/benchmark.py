@@ -58,7 +58,7 @@ def benchmark_model(model_name: str, calib_dir: Path | None = None, track: bool 
     if not img_paths:
         raise FileNotFoundError(f"no benchmark images in {img_dir}")
 
-    tensors = [load_tensor(p, int(spec["input_size"])) for p in img_paths]
+    tensors = [load_tensor(p, int(spec["input_size"]), spec.get("mean"), spec.get("std")) for p in img_paths]
     fp32_out, fp32_ms = _run_session(fp32_path, tensors, spec["input_name"], int(bcfg["warmup_runs"]))
     int8_out, int8_ms = _run_session(int8_path, tensors, spec["input_name"], int(bcfg["warmup_runs"]))
 
