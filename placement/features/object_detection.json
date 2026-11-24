@@ -1,0 +1,47 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-02",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "rtdetrv2-r18-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/PekingU/rtdetr_v2_r18vd",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 46.0,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "20.2M params quantized mixed precision int8"
+  },
+  "fallback": {
+    "name": "dfine-small-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.19,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "10.4M params quantized mixed precision int8"
+  },
+  "considered": [
+    {"name": "yolo11-yolo26", "outcome": "rejected", "reason": "AGPL-3.0 license blocks commercial shipping"},
+    {"name": "rf-detr", "outcome": "deferred", "reason": "check phone speed after rtdetrv2 and dfine"}
+  ]
+}

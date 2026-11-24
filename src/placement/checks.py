@@ -3,7 +3,15 @@ from src.contracts import InferenceFeature
 from .enums import Commercial, Kind, Status, Usage
 from .models import FeatureEntry, ModelRef
 
-EXTRA_FEATURES = frozenset({"image_quality", "qr_barcode"})
+EXTRA_FEATURES = frozenset({
+    "image_quality",
+    "qr_barcode",
+    "object_detection",
+    "depth_estimation",
+    "object_tracking",
+    "speech_recognition",
+    "keyword_spotter",
+})
 KNOWN_FEATURES = frozenset(f.value for f in InferenceFeature) | EXTRA_FEATURES
 
 

@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-06",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "dfine-small-egp-currency-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.19,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "10.4M params to fine tune on real Egyptian banknote dataset"
+  },
+  "fallback": {
+    "name": "mobilenetv3-large-egp-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/timm/mobilenetv3_large_100.ra_in1k",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 5.5,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "lightweight classifier backup 5.5 MB int8"
+  },
+  "considered": [
+    {"name": "yolov8-currency", "outcome": "rejected", "reason": "AGPL-3.0 license blocks commercial shipping"}
+  ]
+}

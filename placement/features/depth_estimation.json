@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-05",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "depth-anything-v2-small",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 94.6,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "24.8M params Apache-2.0 verified on Hugging Face card"
+  },
+  "fallback": {
+    "name": "depth-anything-v2-small-cloud",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "cloud",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/depth-anything/Depth-Anything-V2-Small-hf",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 94.6,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "cloud fallback for phones that run slowly locally"
+  },
+  "considered": [
+    {"name": "apple-depth-pro", "outcome": "deferred", "reason": "1B params too heavy and custom Apple license unconfirmed"}
+  ]
+}

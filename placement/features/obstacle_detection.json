@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-05",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "dfine-small-obstacles-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.19,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "10.4M params fast on device obstacle detection"
+  },
+  "fallback": {
+    "name": "efficientdet-lite0-int8",
+    "kind": "model",
+    "version": null,
+    "runtime": "litert",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://ai.google.dev/edge/mediapipe/solutions/vision/object_detector",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 4.4,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "lightweight fallback for older phones"
+  },
+  "considered": [
+    {"name": "ssd-mobilenetv2", "outcome": "deferred", "reason": "lower accuracy than efficientdet lite0"}
+  ]
+}

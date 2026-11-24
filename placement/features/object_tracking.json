@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-05",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "botsort-cmc-orb",
+    "kind": "algorithm",
+    "version": null,
+    "runtime": "native",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "MIT",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://github.com/NirAharon/BoT-SORT",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 0.0,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "MIT verified via GitHub API uses ORB camera motion fix"
+  },
+  "fallback": {
+    "name": "bytetrack",
+    "kind": "algorithm",
+    "version": null,
+    "runtime": "native",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "MIT",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://github.com/ifzhang/ByteTrack",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 0.0,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "MIT verified via GitHub API simple fast tracker"
+  },
+  "considered": [
+    {"name": "cotracker3", "outcome": "research_only", "reason": "CC-BY-NC-4.0 blocks commercial use"}
+  ]
+}
