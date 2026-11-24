@@ -1,0 +1,84 @@
+{
+  "deviceBefore": {
+    "model": "Xiaomi 2410FPCC5G",
+    "sdkInt": 36,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "armeabi"
+    ],
+    "availMemMb": 2912,
+    "nativeHeapMb": 18.52,
+    "batteryPct": 27,
+    "tempC": 33,
+    "thermalStatus": 0
+  },
+  "deviceAfter": {
+    "model": "Xiaomi 2410FPCC5G",
+    "sdkInt": 36,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "armeabi"
+    ],
+    "availMemMb": 3092,
+    "nativeHeapMb": 26.63,
+    "batteryPct": 27,
+    "tempC": 35,
+    "thermalStatus": 0
+  },
+  "results": [
+    {
+      "name": "rtdetrv2_r18_int8",
+      "status": "ok",
+      "memDeltaMb": 198.12,
+      "tempBeforeC": 33,
+      "tempAfterC": 34,
+      "detail": "",
+      "meanMs": 3888.5886003,
+      "medianMs": 3611.4230390000002,
+      "p95Ms": 6136.064308,
+      "minMs": 3387.837231,
+      "maxMs": 6190.109539
+    },
+    {
+      "name": "dfine_small_int8",
+      "status": "ok",
+      "memDeltaMb": 66.23,
+      "tempBeforeC": 34,
+      "tempAfterC": 35,
+      "detail": "",
+      "meanMs": 2501.17183095,
+      "medianMs": 2508.4965385,
+      "p95Ms": 2601.363615,
+      "minMs": 2328.770154,
+      "maxMs": 2606.243077
+    },
+    {
+      "name": "mobilenetv3_large_int8",
+      "status": "ok",
+      "memDeltaMb": -0.17,
+      "tempBeforeC": 35,
+      "tempAfterC": 35,
+      "detail": "",
+      "meanMs": 74.72419245,
+      "medianMs": 75.9546155,
+      "p95Ms": 87.52,
+      "minMs": 55.016385,
+      "maxMs": 89.555923
+    },
+    {
+      "name": "mlkit_barcode",
+      "status": "ok",
+      "memDeltaMb": 4.39,
+      "tempBeforeC": 35,
+      "tempAfterC": 35,
+      "detail": "",
+      "meanMs": 16.846980650000003,
+      "medianMs": 15.809999999999999,
+      "p95Ms": 19.822769,
+      "minMs": 14.722769,
+      "maxMs": 26.849308
+    }
+  ]
+}
