@@ -1,11 +1,16 @@
 package com.blindassistant.benchmark
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -16,47 +21,74 @@ import java.util.Locale
 class MainActivity : AppCompatActivity() {
     private val scope = CoroutineScope(Dispatchers.Main + Job())
     private lateinit var outputView: TextView
+    private lateinit var runBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val runBtn = Button(this).apply { text = "Run Phone Benchmark" }
-        outputView = TextView(this).apply { text = "Tap Run Phone Benchmark to start" }
+        val cfg = ConfigLoader.load(this)
+        val found = OnnxRunner.availableCount(this, cfg.onnxModels)
+        val header = TextView(this).apply {
+            text = "Blind Assistant AI Benchmark"
+            textSize = 20f
+            setTypeface(null, Typeface.BOLD)
+            setTextColor(Color.BLACK)
+        }
+        runBtn = Button(this).apply { text = "Run Phone Benchmark" }
+        outputView = TextView(this).apply {
+            text = "Ready with $found of ${cfg.onnxModels.size} ONNX models and ML Kit Barcode"
+            textSize = 14f
+            setTextColor(Color.DKGRAY)
+            setPadding(0, 24, 0, 24)
+        }
         val scroll = ScrollView(this).apply { addView(outputView) }
         val root = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(36, 36, 36, 36)
+            setBackgroundColor(Color.WHITE)
+            addView(header)
             addView(runBtn)
             addView(scroll)
         }
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout())
+            v.setPadding(bars.left + 40, bars.top + 32, bars.right + 40, bars.bottom + 32)
+            insets
+        }
         setContentView(root)
-        runBtn.setOnClickListener { startBenchmark(runBtn) }
+        runBtn.setOnClickListener { startBenchmark() }
     }
 
-    private fun startBenchmark(runBtn: Button) {
+    private fun formatLine(r: ModelBenchmarkResult): String {
+        val s = r.stats ?: return "${r.name} ${r.status} ${r.detail}"
+        return String.format(
+            Locale.US,
+            "%s median %.1f ms p95 %.1f ms ram %.2f MB temp %.1f C",
+            r.name, s.medianMs, s.p95Ms, r.memDeltaMb, r.tempAfterC
+        )
+    }
+
+    private fun startBenchmark() {
         runBtn.isEnabled = false
-        outputView.text = "Running benchmarks"
         scope.launch {
-            val summary = withContext(Dispatchers.Default) { executeSuite() }
+            val summary = withContext(Dispatchers.Default) { executeSuite(this@MainActivity) }
             outputView.text = summary
             runBtn.isEnabled = true
         }
     }
 
-    private fun executeSuite(): String {
-        val cfg = ConfigLoader.load(this)
-        val before = DeviceMetrics.capture(this)
-        val onnx = cfg.onnxModels.map { OnnxRunner.run(this, it, cfg.warmupRuns, cfg.timedRuns) }
-        val mlkit = MlKitBarcodeRunner.run(cfg.barcodeWidth, cfg.barcodeHeight, cfg.warmupRuns, cfg.timedRuns)
-        val all = onnx + mlkit
-        val after = DeviceMetrics.capture(this)
-        val saved = ReportWriter.write(this, cfg.reportFile, before, after, all)
-        val lines = all.map { r ->
-            if (r.stats != null) {
-                String.format(Locale.US, "%s median %.1f ms p95 %.1f ms", r.name, r.stats.medianMs, r.stats.p95Ms)
-            } else {
-                "${r.name} ${r.status} ${r.detail}"
-            }
+    private suspend fun executeSuite(ctx: Context): String {
+        val cfg = ConfigLoader.load(ctx)
+        val before = DeviceMetrics.capture(ctx)
+        val results = mutableListOf<ModelBenchmarkResult>()
+        for (spec in cfg.onnxModels) {
+            withContext(Dispatchers.Main) { outputView.text = "Running ${spec.name}" }
+            results.add(OnnxRunner.run(ctx, spec, cfg.warmupRuns, cfg.timedRuns))
         }
-        return (listOf("Device ${before.model} Battery ${after.batteryPct}") + lines + "Saved ${saved.name}").joinToString("\n")
+        withContext(Dispatchers.Main) { outputView.text = "Running mlkit_barcode" }
+        results.add(MlKitBarcodeRunner.run(ctx, cfg.barcodeWidth, cfg.barcodeHeight, cfg.warmupRuns, cfg.timedRuns))
+        val after = DeviceMetrics.capture(ctx)
+        val saved = ReportWriter.write(ctx, cfg.reportFile, before, after, results)
+        val head = "Device ${before.model} Temp ${before.tempC} to ${after.tempC} C"
+        val thermal = "Thermal ${after.thermalStatus} Battery ${after.batteryPct} pct"
+        return (listOf(head, thermal) + results.map(::formatLine) + "Saved ${saved.name}").joinToString("\n\n")
     }
 }

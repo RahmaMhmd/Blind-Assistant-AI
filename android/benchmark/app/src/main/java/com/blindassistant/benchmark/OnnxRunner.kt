@@ -4,29 +4,8 @@ import ai.onnxruntime.OnnxTensor
 import ai.onnxruntime.OrtEnvironment
 import ai.onnxruntime.OrtSession
 import android.content.Context
-import org.json.JSONObject
 import java.io.File
 import java.nio.FloatBuffer
-
-data class ModelBenchmarkResult(
-    val name: String,
-    val status: String,
-    val stats: LatencyStats? = null,
-    val detail: String = ""
-) {
-    fun toJson(): JSONObject = JSONObject().apply {
-        put("name", name)
-        put("status", status)
-        put("detail", detail)
-        if (stats != null) {
-            put("meanMs", stats.meanMs)
-            put("medianMs", stats.medianMs)
-            put("p95Ms", stats.p95Ms)
-            put("minMs", stats.minMs)
-            put("maxMs", stats.maxMs)
-        }
-    }
-}
 
 object OnnxRunner {
     private fun findModel(context: Context, fileName: String): File? {
@@ -41,6 +20,10 @@ object OnnxRunner {
         return cacheFile
     }
 
+    fun availableCount(context: Context, specs: List<OnnxModelSpec>): Int {
+        return specs.count { findModel(context, it.file) != null }
+    }
+
     fun run(context: Context, spec: OnnxModelSpec, warmup: Int, timed: Int): ModelBenchmarkResult {
         val modelFile = findModel(context, spec.file)
             ?: return ModelBenchmarkResult(spec.name, "missing_model", detail = "copy ${spec.file} to app files dir")
@@ -51,13 +34,9 @@ object OnnxRunner {
         env.createSession(modelFile.absolutePath, opts).use { session ->
             OnnxTensor.createTensor(env, FloatBuffer.wrap(floats), shape).use { tensor ->
                 val feed = mapOf(spec.inputName to tensor)
-                repeat(warmup) { session.run(feed).close() }
-                val times = (1..timed).map {
-                    val t0 = System.nanoTime()
+                return BenchmarkHarness.measure(context, spec.name, warmup, timed) {
                     session.run(feed).close()
-                    (System.nanoTime() - t0) / 1_000_000.0
                 }
-                return ModelBenchmarkResult(spec.name, "ok", StatsCalculator.summarize(times))
             }
         }
     }
