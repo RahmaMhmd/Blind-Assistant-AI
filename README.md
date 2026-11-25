@@ -39,7 +39,16 @@ Run the test suite:
 pytest -q
 ```
 
-## 3. Data, Evaluation, Quantization, and Placement
+## 3. Training
+
+```bash
+python -m src.training currency-calib
+python -m src.training currency
+python -m src.training intent-data --csv data/templates/voice_intents_template.csv
+python -m src.training intent --train data/intent/train.jsonl
+```
+
+## 4. Data, Evaluation, Quantization, and Placement
 
 ```bash
 python -m data_tools check ocr-text
@@ -52,7 +61,7 @@ python -m src.placement build
 python -m src.placement check
 ```
 
-## 4. Android Benchmark, MLflow UI, and DVC
+## 5. Android Benchmark, MLflow UI, and DVC
 
 ```bash
 cd android/benchmark && ./gradlew test
@@ -60,7 +69,7 @@ mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000
 dvc pull
 ```
 
-## 5. Backlog Scope and Caveats
+## 6. Backlog Scope and Caveats
 
 - Official Phase 2 tasks span `P2-01` through `P2-16`; `P2-17` and `P2-18` are Phase 2 closeout extensions, while `OcrHandler` (`P4-10`), `imagequality` (`P4-08`), and QR tests (`P7-09`) are early pre-work.
 - See `placement/SDD_ALIGNMENT.md` for SDD deviations (`PaddleOCR` vs `ML Kit`, `ZXing` safety, `1.5s` timeout risk) and dataset caveats (seed data limits, single-device Xiaomi baseline, currency student collection license blocker).

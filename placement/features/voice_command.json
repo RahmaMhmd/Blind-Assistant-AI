@@ -1,7 +1,7 @@
 {
   "status": "tentative",
   "confirmIn": "P3-11",
-  "verifiedOn": "2026-11-24",
+  "verifiedOn": "2026-11-25",
   "primary": {
     "name": "camelbert-da-intent",
     "kind": "model",
@@ -19,7 +19,7 @@
     "sizeMb": 418.5,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "Apache-2.0 dialect Arabic backbone 37.3 ms CPU baseline voice-commands seed data has GENERAL_SPEECH only record real commands in P3-11"
+    "notes": "8 intent test set pending team written data P3-11 pipeline in src training"
   },
   "fallback": {
     "name": "qwen3-1.7b-instruct",

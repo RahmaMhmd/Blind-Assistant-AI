@@ -1,7 +1,7 @@
 {
   "status": "tentative",
   "confirmIn": "P3-09",
-  "verifiedOn": "2026-11-24",
+  "verifiedOn": "2026-11-25",
   "primary": {
     "name": "whisper-large-v3-turbo",
     "kind": "model",
@@ -19,7 +19,7 @@
     "sizeMb": 1542.9,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "809M params MIT license verified on Hugging Face card"
+    "notes": "not yet evaluated full 60 clip CPU run exceeded 60 min budget weights downloaded evaluate in P3-09 on cloud GPU"
   },
   "fallback": {
     "name": "whisper-large-v3-arabic",

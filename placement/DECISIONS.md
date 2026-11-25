@@ -1,12 +1,12 @@
 | Feature | Status | Primary | Fallback | Confirm in |
 |---|---|---|---|---|
-| currency_recognition | tentative | mobilenetv3-large-egp-int8 (local, Apache-2.0, 5.69 MB) | dfine-small-egp-currency-int8 (cloud, Apache-2.0, 36.43 MB) | P5-12 |
+| currency_recognition | tentative | mobilenetv3-large-egp-int8 (local, Apache-2.0, 4.46 MB) | dfine-small-egp-currency-int8 (cloud, Apache-2.0, 36.43 MB) | P5-12 |
 | depth_estimation | tentative | depth-anything-v2-small (local, Apache-2.0, 94.6 MB) | depth-anything-v2-small-cloud (cloud, Apache-2.0, 94.6 MB) | P6-10 |
 | image_quality | tentative | opencv-laplacian-brightness (local, Apache-2.0, 0.0 MB) | mobilenetv3-quality-classifier (local, BSD-3-Clause, 9.8 MB) | P4-08 |
 | keyword_spotter | tentative | sherpa-onnx-kws (local, Apache-2.0, 5.0 MB) | silero-vad (local, MIT, 10.4 MB) | P3-10 |
 | object_detection | tentative | dfine-small-int8 (local, Apache-2.0, 36.43 MB) | rtdetrv2-r18-cloud (cloud, Apache-2.0, 46.6 MB) | P5-09 |
 | object_tracking | tentative | botsort-cmc-orb (local, MIT, 0.0 MB) | bytetrack (local, MIT, 0.0 MB) | P6-11 |
-| obstacle_detection | tentative | efficientdet-lite0-int8 (local, Apache-2.0, 4.4 MB) | dfine-small-obstacles-int8 (local, Apache-2.0, 36.43 MB) | P6-09 |
+| obstacle_detection | tentative | efficientdet-lite0-int8 (local, Apache-2.0, 4.39 MB) | dfine-small-obstacles-int8 (local, Apache-2.0, 36.43 MB) | P6-09 |
 | ocr | tentative | paddleocr-ppocrv5-arabic-mobile (local, Apache-2.0, 12.8 MB) | paddleocr-vl (cloud, Apache-2.0, 2045.0 MB) | P4-09 |
 | qr_barcode | tentative | zxing-cpp (local, Apache-2.0, 1.1 MB) | ml-kit-barcode-scanning (local, Google APIs Terms of Service, 2.4 MB) | P7-09 |
 | scene_description | tentative | qwen2.5-vl-7b-instruct (cloud, Apache-2.0, 15816.1 MB) | internvl3.5-8b (cloud, Apache-2.0, 16266.6 MB) | P5-10 |

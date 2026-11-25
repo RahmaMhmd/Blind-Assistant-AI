@@ -1,11 +1,11 @@
 {
   "status": "tentative",
   "confirmIn": "P6-09",
-  "verifiedOn": "2026-11-24",
+  "verifiedOn": "2026-11-25",
   "primary": {
     "name": "efficientdet-lite0-int8",
     "kind": "model",
-    "version": null,
+    "version": "latest-int8-2026-11-25",
     "runtime": "litert",
     "placement": "local",
     "languages": [],
@@ -16,10 +16,10 @@
       "sourceUrl": "https://ai.google.dev/edge/mediapipe/solutions/vision/object_detector",
       "verifiedOn": "2026-11-23"
     },
-    "sizeMb": 4.4,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "respects SDD 1.5s local router timeout LiteRT artifact pending export in P6-09"
+    "sizeMb": 4.39,
+    "sha256": "0720bf247bd76e6594ea28fa9c6f7c5242be774818997dbbeffc4da460c723bb",
+    "rollbackTarget": "efficientdet-lite0-int8@latest-int8-2026-11-25",
+    "notes": "100.5 ms median 101.2 ms p95 and -0.30 MB RAM delta on Xiaomi 2410FPCC5G run 2 zero-tensor latency only obstacle accuracy pending P6-09"
   },
   "fallback": {
     "name": "dfine-small-obstacles-int8",
