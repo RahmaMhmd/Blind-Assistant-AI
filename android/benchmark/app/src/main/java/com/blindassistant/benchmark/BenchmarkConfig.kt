@@ -10,11 +10,17 @@ data class OnnxModelSpec(
     val inputSize: Int
 )
 
+data class TfLiteModelSpec(
+    val name: String,
+    val file: String
+)
+
 data class BenchmarkConfig(
     val warmupRuns: Int,
     val timedRuns: Int,
     val reportFile: String,
     val onnxModels: List<OnnxModelSpec>,
+    val tfliteModels: List<TfLiteModelSpec>,
     val barcodeWidth: Int,
     val barcodeHeight: Int
 )
@@ -33,11 +39,17 @@ object ConfigLoader {
                 inputSize = obj.getInt("inputSize")
             )
         }
+        val tflArr = root.optJSONArray("tfliteModels")
+        val tfliteModels = if (tflArr == null) emptyList() else (0 until tflArr.length()).map { idx ->
+            val obj = tflArr.getJSONObject(idx)
+            TfLiteModelSpec(name = obj.getString("name"), file = obj.getString("file"))
+        }
         return BenchmarkConfig(
             warmupRuns = root.getInt("warmupRuns"),
             timedRuns = root.getInt("timedRuns"),
             reportFile = root.getString("reportFile"),
             onnxModels = models,
+            tfliteModels = tfliteModels,
             barcodeWidth = root.getInt("barcodeWidth"),
             barcodeHeight = root.getInt("barcodeHeight")
         )

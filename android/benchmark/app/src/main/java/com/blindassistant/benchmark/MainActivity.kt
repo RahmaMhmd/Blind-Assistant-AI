@@ -1,6 +1,5 @@
 package com.blindassistant.benchmark
 
-import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -27,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val cfg = ConfigLoader.load(this)
         val found = OnnxRunner.availableCount(this, cfg.onnxModels)
+        val tflFound = LiteRtRunner.availableCount(this, cfg.tfliteModels)
         val header = TextView(this).apply {
             text = "Blind Assistant AI Benchmark"
             textSize = 20f
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
         runBtn = Button(this).apply { text = "Run Phone Benchmark" }
         outputView = TextView(this).apply {
-            text = "Ready with $found of ${cfg.onnxModels.size} ONNX models and ML Kit Barcode"
+            text = "Ready with $found ONNX and $tflFound LiteRT models plus ML Kit"
             textSize = 14f
             setTextColor(Color.DKGRAY)
             setPadding(0, 24, 0, 24)
@@ -55,44 +55,33 @@ class MainActivity : AppCompatActivity() {
         }
         setContentView(root)
         runBtn.setOnClickListener { startBenchmark() }
-    }
-
-    private fun formatLine(r: ModelBenchmarkResult): String {
-        val s = r.stats ?: return "${r.name} ${r.status} ${r.detail}"
-        val acc = r.correctRate?.let { String.format(Locale.US, " acc %.1f%%", it * 100.0) } ?: ""
-        return String.format(
-            Locale.US,
-            "%s median %.1f ms p95 %.1f ms%s ram %.2f MB temp %.1f C",
-            r.name, s.medianMs, s.p95Ms, acc, r.memDeltaMb, r.tempAfterC
-        )
+        if (intent.getBooleanExtra("autorun", false)) {
+            startBenchmark()
+        }
     }
 
     private fun startBenchmark() {
         runBtn.isEnabled = false
         scope.launch {
-            val summary = withContext(Dispatchers.Default) { executeSuite(this@MainActivity) }
+            val summary = withContext(Dispatchers.Default) {
+                BenchmarkSuite.execute(this@MainActivity) { msg ->
+                    withContext(Dispatchers.Main) { outputView.text = msg }
+                }
+            }
             outputView.text = summary
             runBtn.isEnabled = true
         }
     }
 
-    private suspend fun executeSuite(ctx: Context): String {
-        val cfg = ConfigLoader.load(ctx)
-        val before = DeviceMetrics.capture(ctx)
-        val results = mutableListOf<ModelBenchmarkResult>()
-        for (spec in cfg.onnxModels) {
-            withContext(Dispatchers.Main) { outputView.text = "Running ${spec.name}" }
-            results.add(OnnxRunner.run(ctx, spec, cfg.warmupRuns, cfg.timedRuns))
+    companion object {
+        fun formatLine(r: ModelBenchmarkResult): String {
+            val s = r.stats ?: return "${r.name} ${r.status} ${r.detail}"
+            val acc = r.correctRate?.let { String.format(Locale.US, " acc %.1f%%", it * 100.0) } ?: ""
+            return String.format(
+                Locale.US,
+                "%s median %.1f ms p95 %.1f ms%s ram %.2f MB temp %.1f C",
+                r.name, s.medianMs, s.p95Ms, acc, r.memDeltaMb, r.tempAfterC
+            )
         }
-        withContext(Dispatchers.Main) { outputView.text = "Running mlkit_barcode" }
-        results.add(MlKitBarcodeRunner.run(ctx, cfg.barcodeWidth, cfg.barcodeHeight, cfg.warmupRuns, cfg.timedRuns))
-        withContext(Dispatchers.Main) { outputView.text = "Running mlkit_text" }
-        results.add(MlKitTextRunner.run(ctx, "en", cfg.warmupRuns))
-        results.add(MlKitTextRunner.run(ctx, "ar", cfg.warmupRuns))
-        val after = DeviceMetrics.capture(ctx)
-        val saved = ReportWriter.write(ctx, cfg.reportFile, before, after, results)
-        val head = "Device ${before.model} Temp ${before.tempC} to ${after.tempC} C"
-        val thermal = "Thermal ${after.thermalStatus} Battery ${after.batteryPct} pct"
-        return (listOf(head, thermal) + results.map(::formatLine) + "Saved ${saved.name}").joinToString("\n\n")
     }
 }
