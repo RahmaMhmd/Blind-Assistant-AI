@@ -61,3 +61,26 @@ models:
       - 0.229
       - 0.224
       - 0.225
+  mobilenetv3_large_egp:
+    task: classification
+    source: hf-hub:timm/mobilenetv3_large_100.ra_in1k
+    num_classes: 6
+    checkpoint: models/checkpoints/mobilenetv3_large_egp.pth
+    calibration_dir: data/calib_currency/calib
+    benchmark_dir: data/calib_currency/bench
+    input_size: 224
+    input_name: pixel_values
+    outputs:
+      - logits
+    opset: 17
+    strategy: conv_all
+    quant_format: qdq
+    calibrate_method: percentile
+    mean:
+      - 0.485
+      - 0.456
+      - 0.406
+    std:
+      - 0.229
+      - 0.224
+      - 0.225

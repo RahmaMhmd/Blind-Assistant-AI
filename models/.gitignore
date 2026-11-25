@@ -1,3 +1,5 @@
 *.onnx
 /onnx_fp32
 /onnx_int8
+/checkpoints
+/litert

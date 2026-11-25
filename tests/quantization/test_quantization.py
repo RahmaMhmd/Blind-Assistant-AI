@@ -53,7 +53,7 @@ def _node(name: str, group: int = 1, kernel: list[int] | None = None, op: str = 
 
 def test_config_contains_all_quantized_models():
     cfg = load_config()
-    assert set(cfg["models"]) == {"rtdetrv2_r18", "dfine_small", "mobilenetv3_large"}
+    assert set(cfg["models"]) == {"rtdetrv2_r18", "dfine_small", "mobilenetv3_large", "mobilenetv3_large_egp"}
     assert model_spec("dfine_small", cfg)["strategy"] == "dfine_mixed"
 
 

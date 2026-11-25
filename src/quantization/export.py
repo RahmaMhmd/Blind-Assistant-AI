@@ -10,8 +10,14 @@ def _load_source_model(spec: dict):
         model = AutoModelForObjectDetection.from_pretrained(spec["source"])
     elif spec["task"] == "classification":
         import timm
+        import torch
 
-        model = timm.create_model(spec["source"], pretrained=True)
+        model = timm.create_model(
+            spec["source"], pretrained=True, num_classes=int(spec.get("num_classes", 1000))
+        )
+        if spec.get("checkpoint"):
+            state = torch.load(resolve_path(spec["checkpoint"]), map_location="cpu")
+            model.load_state_dict(state)
     else:
         raise ValueError(f"unsupported task: {spec['task']}")
     model.eval()

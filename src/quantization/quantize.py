@@ -47,7 +47,7 @@ def quantize_int8(
     prep = src.with_name(f"{model_name}_prep.onnx")
     out = Path(int8_path) if int8_path else resolve_path(paths["int8_dir"]) / f"{model_name}_int8.onnx"
     out.parent.mkdir(parents=True, exist_ok=True)
-    cdir = Path(calib_dir) if calib_dir else resolve_path(paths["calibration_dir"])
+    cdir = Path(calib_dir) if calib_dir else resolve_path(spec.get("calibration_dir", paths["calibration_dir"]))
 
     quant_pre_process(str(src), str(prep), skip_symbolic_shape=True)
     graph = onnx.load(str(prep)).graph

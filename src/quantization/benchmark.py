@@ -53,7 +53,7 @@ def benchmark_model(model_name: str, calib_dir: Path | None = None, track: bool 
 
     fp32_path = resolve_path(pcfg["fp32_dir"]) / f"{model_name}_fp32.onnx"
     int8_path = resolve_path(pcfg["int8_dir"]) / f"{model_name}_int8.onnx"
-    img_dir = Path(calib_dir) if calib_dir else resolve_path(pcfg["calibration_dir"])
+    img_dir = Path(calib_dir) if calib_dir else resolve_path(spec.get("benchmark_dir", pcfg["calibration_dir"]))
     img_paths = list_images(img_dir, int(bcfg["max_images"]))
     if not img_paths:
         raise FileNotFoundError(f"no benchmark images in {img_dir}")
