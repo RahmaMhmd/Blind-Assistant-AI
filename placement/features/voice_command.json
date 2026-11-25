@@ -1,0 +1,47 @@
+{
+  "status": "tentative",
+  "confirmIn": "P3-11",
+  "verifiedOn": "2026-11-25",
+  "primary": {
+    "name": "camelbert-da-intent",
+    "kind": "model",
+    "version": null,
+    "runtime": "transformers",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar"],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/CAMeL-Lab/bert-base-arabic-camelbert-da",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 418.5,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "8 intent test set pending team written data P3-11 pipeline in src training"
+  },
+  "fallback": {
+    "name": "qwen3-1.7b-instruct",
+    "kind": "model",
+    "version": null,
+    "runtime": "transformers",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar", "en"],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/Qwen/Qwen3-1.7B",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 3875.3,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "Apache-2.0 verified 2.0B params small language model for intent and slots"
+  },
+  "considered": [
+    {"name": "gliner-multi-v2.1", "outcome": "baseline", "reason": "Apache-2.0 zero shot slot baseline before fine tuning"},
+    {"name": "marbert-v2", "outcome": "deferred", "reason": "license tag not confirmed on Hugging Face card"}
+  ]
+}

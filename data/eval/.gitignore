@@ -1,3 +1,7 @@
 /audio_test
 /image_test
 /ocr_words
+/coco_det
+/egyptian_asr
+/arabic_intent
+/ocr_eval

@@ -73,6 +73,12 @@ models:
     params:
       model_id: CAMeL-Lab/bert-base-arabic-camelbert-da
 
+  camelbert-da-intent-ft:
+    task: intent_classification
+    adapter: camelbert
+    params:
+      model_id: models/checkpoints/camelbert_intent
+
 
 prepare_ocr_words:
   ignore_text: "###"  

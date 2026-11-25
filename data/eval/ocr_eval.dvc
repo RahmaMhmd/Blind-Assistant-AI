@@ -1,0 +1,6 @@
+outs:
+- md5: f72fa56e20e9585032e8308edb43c334.dir
+  size: 449079
+  nfiles: 121
+  hash: md5
+  path: ocr_eval

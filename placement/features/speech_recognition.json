@@ -1,0 +1,48 @@
+{
+  "status": "tentative",
+  "confirmIn": "P3-09",
+  "verifiedOn": "2026-11-25",
+  "primary": {
+    "name": "whisper-large-v3-turbo",
+    "kind": "model",
+    "version": null,
+    "runtime": "faster_whisper",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar", "en"],
+    "usage": "production",
+    "license": {
+      "name": "MIT",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/openai/whisper-large-v3-turbo",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 1542.9,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "not yet evaluated full 60 clip CPU run exceeded 60 min budget weights downloaded evaluate in P3-09 on cloud GPU"
+  },
+  "fallback": {
+    "name": "whisper-large-v3-arabic",
+    "kind": "model",
+    "version": null,
+    "runtime": "transformers",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar"],
+    "usage": "production",
+    "license": {
+      "name": "MIT",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/MightyStudent/whisper-large-v3-arabic",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 5888.3,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "Egyptian Arabic fine tune MIT license verified on Hugging Face card"
+  },
+  "considered": [
+    {"name": "whisper-small-eg", "outcome": "baseline", "reason": "Apache-2.0 241.7M params scored 0.7106 WER at 8.18s on 60 egyptian_asr clips too high for production"},
+    {"name": "mms-1b-all", "outcome": "rejected", "reason": "CC-BY-NC-4.0 blocks commercial use"},
+    {"name": "canary-1b", "outcome": "rejected", "reason": "CC-BY-NC-4.0 blocks commercial use"}
+  ]
+}

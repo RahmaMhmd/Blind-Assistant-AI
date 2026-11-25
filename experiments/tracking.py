@@ -1,11 +1,9 @@
-import os
 from types import ModuleType
 
 from .constants import EXPERIMENT_NAME, TRACKING_URI
 
 
 def _load_mlflow() -> ModuleType:
-    os.environ.setdefault("MLFLOW_DISABLE_AGENT_HINT", "1")
     import mlflow
 
     return mlflow

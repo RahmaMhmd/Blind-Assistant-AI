@@ -1,0 +1,44 @@
+{
+  "status": "tentative",
+  "confirmIn": "P3-10",
+  "verifiedOn": "2026-11-24",
+  "primary": {
+    "name": "sherpa-onnx-kws",
+    "kind": "model",
+    "version": null,
+    "runtime": "sherpa_onnx",
+    "placement": "local",
+    "languages": ["ar-EG", "ar"],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://github.com/k2-fsa/sherpa-onnx",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 5.0,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "Apache-2.0 verified offline wake words not yet benchmarked on phone needs real wake command recordings in P3-10"
+  },
+  "fallback": {
+    "name": "silero-vad",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "MIT",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/onnx-community/silero-vad",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 10.4,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "MIT license verified on Hugging Face detects voice start and stop"
+  },
+  "considered": []
+}

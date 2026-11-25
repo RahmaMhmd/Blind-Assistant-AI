@@ -1,27 +1,8 @@
 {
   "status": "tentative",
   "confirmIn": "P7-09",
-  "verifiedOn": "2026-11-21",
+  "verifiedOn": "2026-11-24",
   "primary": {
-    "name": "ml-kit-barcode-scanning",
-    "kind": "model",
-    "version": null,
-    "runtime": "mlkit",
-    "placement": "local",
-    "languages": [],
-    "usage": "production",
-    "license": {
-      "name": "Google APIs Terms of Service",
-      "commercialUse": "allowed",
-      "sourceUrl": "https://developers.google.com/ml-kit/terms",
-      "verifiedOn": "2026-11-21"
-    },
-    "sizeMb": 2.4,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "ML Kit terms allow commercial use at no cost. bundled model adds about 2.4 MB or 0.5 MB via Google Play Services"
-  },
-  "fallback": {
     "name": "zxing-cpp",
     "kind": "model",
     "version": "3.1.1",
@@ -38,9 +19,28 @@
     "sizeMb": 1.1,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "license and wheel size verified from installed zxing-cpp 3.1.1 package metadata"
+    "notes": "scored 75.29 pct on 255 non test and 82.61 pct on 46 locked photos at 2.48 ms CPU with 1.57 pct wrong preferred in P7-09 with multi frame verify"
+  },
+  "fallback": {
+    "name": "ml-kit-barcode-scanning",
+    "kind": "model",
+    "version": null,
+    "runtime": "mlkit",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Google APIs Terms of Service",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://developers.google.com/ml-kit/terms",
+      "verifiedOn": "2026-11-21"
+    },
+    "sizeMb": 2.4,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "scored 54.12 pct correct and 25.49 pct wrong on 255 real photos at 35.2 ms median on Xiaomi unsafe to speak aloud without multi frame verify"
   },
   "considered": [
-    {"name": "opencv-qrcode-detector", "outcome": "deferred", "reason": "compare on our images before dropping it"}
+    {"name": "opencv-qrcode-detector", "outcome": "deferred", "reason": "scored 45.45 pct QR and 11.43 pct barcode on locked set"}
   ]
 }

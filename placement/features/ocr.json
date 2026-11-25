@@ -1,7 +1,7 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-03",
-  "verifiedOn": "2026-11-21",
+  "confirmIn": "P4-09",
+  "verifiedOn": "2026-11-24",
   "primary": {
     "name": "paddleocr-ppocrv5-arabic-mobile",
     "kind": "model",
@@ -19,7 +19,7 @@
     "sizeMb": 12.8,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "official Hugging Face cards for PP-OCRv5_mobile_det and arabic_PP-OCRv5_mobile_rec verified Apache-2.0 at 12.5 MB native and 12.8 MB ONNX"
+    "notes": "0.0313 CER and 0.1138 WER at 82.6 ms CPU on 120 ocr_eval crops pending phone benchmark and SDD update in P4-09"
   },
   "fallback": {
     "name": "paddleocr-vl",
@@ -41,7 +41,7 @@
     "notes": "0.9B parameters. official card verified Apache-2.0 with 1828.4 MB VLM weights plus 203.8 MB layout model"
   },
   "considered": [
-    {"name": "ml-kit-text-recognition-v2", "outcome": "deferred", "reason": "Arabic is not in the supported experimental or mapped lists on 2026-11-21 so it is English only. keep as optional English path and test it in P2-13"},
+    {"name": "ml-kit-text-recognition-v2", "outcome": "deferred", "reason": "scored 83.3 pct on 60 English crops and 0.0 pct on 60 Arabic crops on Xiaomi requires SDD update from ML Kit to PaddleOCR"},
     {"name": "tesseract-5", "outcome": "baseline", "reason": "baseline for CER and WER only"},
     {"name": "qari-ocr", "outcome": "deferred", "reason": "2B model on Qwen2-VL with Apache-2.0 verified on NAMAA-Space/Qari-OCR-0.1-VL-2B-Instruct. second cloud candidate to compare on our data"},
     {"name": "baseer", "outcome": "research_only", "reason": "3B model on Qwen2.5-VL-3B. base repo is gated and public variant Misraj/Baseer__Nakba is CC-BY-NC-SA-4.0 non-commercial"},

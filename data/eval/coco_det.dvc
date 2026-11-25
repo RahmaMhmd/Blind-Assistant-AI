@@ -1,0 +1,6 @@
+outs:
+- md5: 9226f790951864d6b4d2a6e05432b038.dir
+  size: 7218876
+  nfiles: 61
+  hash: md5
+  path: coco_det

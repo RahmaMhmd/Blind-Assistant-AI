@@ -36,6 +36,10 @@ class Runtime(str, Enum):
     ZXING = "zxing"
     PADDLE = "paddle"
     TRANSFORMERS = "transformers"
+    NATIVE = "native"
+    LITERT = "litert"
+    SHERPA_ONNX = "sherpa_onnx"
+    FASTER_WHISPER = "faster_whisper"
 
 
 class Outcome(str, Enum):

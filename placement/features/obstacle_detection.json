@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P6-09",
+  "verifiedOn": "2026-11-25",
+  "primary": {
+    "name": "efficientdet-lite0-int8",
+    "kind": "model",
+    "version": "latest-int8-2026-11-25",
+    "runtime": "litert",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://ai.google.dev/edge/mediapipe/solutions/vision/object_detector",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 4.39,
+    "sha256": "0720bf247bd76e6594ea28fa9c6f7c5242be774818997dbbeffc4da460c723bb",
+    "rollbackTarget": "efficientdet-lite0-int8@latest-int8-2026-11-25",
+    "notes": "100.5 ms median 101.2 ms p95 and -0.30 MB RAM delta on Xiaomi 2410FPCC5G run 2 zero-tensor latency only obstacle accuracy pending P6-09"
+  },
+  "fallback": {
+    "name": "dfine-small-obstacles-int8",
+    "kind": "model",
+    "version": "0.1.0-p2-base",
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "baseline_only",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.43,
+    "sha256": "34b328ec83411818f2bcc745c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "dfine-small-fp32@0.1.0-p2-base",
+    "notes": "CPU latency 1.45s mean and 1.63s p95 cool or 2.65s warm exceeds 1.5s SDD timeout without NNAPI or GPU delegate"
+  },
+  "considered": [
+    {"name": "ssd-mobilenetv2", "outcome": "deferred", "reason": "lower accuracy than efficientdet lite0"}
+  ]
+}
