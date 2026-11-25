@@ -1,7 +1,7 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-01",
-  "verifiedOn": "2026-11-23",
+  "confirmIn": "P3-10",
+  "verifiedOn": "2026-11-24",
   "primary": {
     "name": "sherpa-onnx-kws",
     "kind": "model",
@@ -19,7 +19,7 @@
     "sizeMb": 5.0,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "Apache-2.0 verified via GitHub API runs offline wake words on phone"
+    "notes": "Apache-2.0 verified offline wake words not yet benchmarked on phone needs real wake command recordings in P3-10"
   },
   "fallback": {
     "name": "silero-vad",

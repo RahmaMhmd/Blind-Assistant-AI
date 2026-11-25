@@ -1,44 +1,44 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-06",
-  "verifiedOn": "2026-11-23",
+  "confirmIn": "P5-12",
+  "verifiedOn": "2026-11-24",
   "primary": {
-    "name": "dfine-small-egp-currency-int8",
-    "kind": "model",
-    "version": null,
-    "runtime": "onnxruntime",
-    "placement": "local",
-    "languages": [],
-    "usage": "production",
-    "license": {
-      "name": "Apache-2.0",
-      "commercialUse": "allowed",
-      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
-      "verifiedOn": "2026-11-23"
-    },
-    "sizeMb": 36.19,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "10.4M params to fine tune on real Egyptian banknote dataset"
-  },
-  "fallback": {
     "name": "mobilenetv3-large-egp-int8",
     "kind": "model",
-    "version": null,
+    "version": "0.1.0-p2-base",
     "runtime": "onnxruntime",
     "placement": "local",
     "languages": [],
-    "usage": "production",
+    "usage": "baseline_only",
     "license": {
       "name": "Apache-2.0",
       "commercialUse": "allowed",
       "sourceUrl": "https://huggingface.co/timm/mobilenetv3_large_100.ra_in1k",
       "verifiedOn": "2026-11-23"
     },
-    "sizeMb": 5.5,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "lightweight classifier backup 5.5 MB int8"
+    "sizeMb": 5.69,
+    "sha256": "b89e7f1c264a1b079b9494a613e1855fdf697e00b13462a02950f82c68232968",
+    "rollbackTarget": "mobilenetv3-large-fp32@0.1.0-p2-base",
+    "notes": "matches SDD classifier design at 28.5 ms median on Xiaomi CPU pending EGP fine tuning in P5-12 and dataset license verification"
+  },
+  "fallback": {
+    "name": "dfine-small-egp-currency-int8",
+    "kind": "model",
+    "version": "0.1.0-p2-base",
+    "runtime": "onnxruntime",
+    "placement": "cloud",
+    "languages": [],
+    "usage": "baseline_only",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.43,
+    "sha256": "34b328ec83411818f2bcc745c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "dfine-small-fp32@0.1.0-p2-base",
+    "notes": "cloud backup detector for multi note localization pending EGP fine tuning in P5-12"
   },
   "considered": [
     {"name": "yolov8-currency", "outcome": "rejected", "reason": "AGPL-3.0 license blocks commercial shipping"}

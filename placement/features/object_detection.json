@@ -1,11 +1,11 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-02",
+  "confirmIn": "P5-09",
   "verifiedOn": "2026-11-24",
   "primary": {
     "name": "dfine-small-int8",
     "kind": "model",
-    "version": null,
+    "version": "0.1.0-p2",
     "runtime": "onnxruntime",
     "placement": "local",
     "languages": [],
@@ -17,14 +17,14 @@
       "verifiedOn": "2026-11-23"
     },
     "sizeMb": 36.43,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "57.88 pct map50 on coco det and 1.32 to 2.65 s on Xiaomi CPU with 66 MB ram"
+    "sha256": "34b328ec83411818f2bcc745c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "dfine-small-fp32@0.1.0-p2",
+    "notes": "57.88 pct map50 on coco det 1.45s mean and 1.63s p95 cool or 2.65s warm on Xiaomi CPU risks 1.5s SDD timeout without NNAPI or GPU delegate"
   },
   "fallback": {
     "name": "rtdetrv2-r18-cloud",
     "kind": "model",
-    "version": null,
+    "version": "0.1.0-p2",
     "runtime": "onnxruntime",
     "placement": "cloud",
     "languages": [],
@@ -36,9 +36,9 @@
       "verifiedOn": "2026-11-23"
     },
     "sizeMb": 46.6,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "61.19 pct map50 higher accuracy option on cloud 2 to 4.1 s on phone CPU"
+    "sha256": "f665941269fbd930ea87d245c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "rtdetrv2-r18-fp32@0.1.0-p2",
+    "notes": "61.19 pct map50 higher accuracy option on cloud 2.07s median and 2.55s p95 cool on phone CPU"
   },
   "considered": [
     {"name": "yolo11-yolo26", "outcome": "rejected", "reason": "AGPL-3.0 license blocks commercial shipping"},

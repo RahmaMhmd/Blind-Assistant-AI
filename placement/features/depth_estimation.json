@@ -1,7 +1,7 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-05",
-  "verifiedOn": "2026-11-23",
+  "confirmIn": "P6-10",
+  "verifiedOn": "2026-11-24",
   "primary": {
     "name": "depth-anything-v2-small",
     "kind": "model",
@@ -19,7 +19,7 @@
     "sizeMb": 94.6,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "24.8M params Apache-2.0 verified on Hugging Face card"
+    "notes": "24.8M params Apache-2.0 verified on Hugging Face card not yet benchmarked on phone deferred to P6-10"
   },
   "fallback": {
     "name": "depth-anything-v2-small-cloud",

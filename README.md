@@ -1,65 +1,66 @@
-# Blind Assistant AI – Team Setup
+# Blind Assistant AI
 
-## 1. Clone Repository
+Backend inference service, evaluation harness, INT8 quantization pipeline, dataset CLI, placement manifest, and Android phone benchmark harness.
 
-```powershell
-git clone -b main https://github.com/RahmaMhmd/Blind-Assistant-AI.git
-cd Blind-Assistant-AI
-```
+## 1. Environment Setup
 
-## 2. Create Environment & Install Libraries
+Linux or macOS:
 
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-## 3. MLflow
-
-Run MLflow UI:
+Windows PowerShell:
 
 ```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Split files are also available (`requirements-service.txt`, `requirements-vision.txt`, `requirements-test.txt`, `requirements-eval.txt`).
+
+## 2. Service and Tests
+
+Run the FastAPI service (fixture handlers in Phase 2; `requirements-vision.txt` and `paddleocr` join Docker in `P4-10`):
+
+```bash
+python -m src.service
+uvicorn src.service.main:app --reload
+```
+
+Run the test suite:
+
+```bash
+pytest -q
+```
+
+## 3. Data, Evaluation, Quantization, and Placement
+
+```bash
+python -m data_tools check ocr-text
+python -m src.evaluation --model paddleocr-arabic-rec --testset ocr_eval --track
+python -m src.quantization calibrate
+python -m src.quantization export --model dfine_small
+python -m src.quantization quantize --model dfine_small
+python -m src.quantization benchmark --model dfine_small --track
+python -m src.placement build
+python -m src.placement check
+```
+
+## 4. Android Benchmark, MLflow UI, and DVC
+
+```bash
+cd android/benchmark && ./gradlew test
 mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000
-```
-
-Open:
-
-http://127.0.0.1:5000
-
-## 4. DVC – Google Drive Setup
-
-
-```powershell
-dvc remote add -d gdrive gdrive://GOOGLE_DRIVE_FOLDER_ID/dvcstore
-```
-
-Configure OAuth credentials locally:
-
-```powershell
-dvc config --local remote.gdrive.gdrive_client_id "CLIENT_ID"
-
-dvc config --local remote.gdrive.gdrive_client_secret "CLIENT_SECRET"
-```
-
-## 5. Download Existing Data
-
-```powershell
 dvc pull
 ```
 
-## 6. Upload New or Updated Data
+## 5. Backlog Scope and Caveats
 
-Track the dataset:
-
-```powershell
-dvc add data/raw/DATASET_NAME
-```
-
-Upload data to Google Drive:
-
-```powershell
-dvc push
-```
+- Official Phase 2 tasks span `P2-01` through `P2-16`; `P2-17` and `P2-18` are Phase 2 closeout extensions, while `OcrHandler` (`P4-10`), `imagequality` (`P4-08`), and QR tests (`P7-09`) are early pre-work.
+- See `placement/SDD_ALIGNMENT.md` for SDD deviations (`PaddleOCR` vs `ML Kit`, `ZXing` safety, `1.5s` timeout risk) and dataset caveats (seed data limits, single-device Xiaomi baseline, currency student collection license blocker).

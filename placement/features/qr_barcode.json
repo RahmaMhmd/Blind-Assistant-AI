@@ -19,7 +19,7 @@
     "sizeMb": 1.1,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "scored 75.29 pct on 255 non test photos and 82.61 pct on 46 locked photos at 2.48 ms"
+    "notes": "scored 75.29 pct on 255 non test and 82.61 pct on 46 locked photos at 2.48 ms CPU with 1.57 pct wrong preferred in P7-09 with multi frame verify"
   },
   "fallback": {
     "name": "ml-kit-barcode-scanning",
@@ -38,7 +38,7 @@
     "sizeMb": 2.4,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "scored 54.12 pct correct and 25.49 pct wrong on 255 real photos at 35.7 to 63.0 ms on Xiaomi"
+    "notes": "scored 54.12 pct correct and 25.49 pct wrong on 255 real photos at 35.2 ms median on Xiaomi unsafe to speak aloud without multi frame verify"
   },
   "considered": [
     {"name": "opencv-qrcode-detector", "outcome": "deferred", "reason": "scored 45.45 pct QR and 11.43 pct barcode on locked set"}

@@ -1,7 +1,7 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-01",
-  "verifiedOn": "2026-11-23",
+  "confirmIn": "P3-09",
+  "verifiedOn": "2026-11-24",
   "primary": {
     "name": "whisper-large-v3-turbo",
     "kind": "model",
@@ -41,7 +41,7 @@
     "notes": "Egyptian Arabic fine tune MIT license verified on Hugging Face card"
   },
   "considered": [
-    {"name": "whisper-small-eg", "outcome": "baseline", "reason": "Apache-2.0 small 241.7M params baseline on Hugging Face"},
+    {"name": "whisper-small-eg", "outcome": "baseline", "reason": "Apache-2.0 241.7M params scored 0.7106 WER at 8.18s on 60 egyptian_asr clips too high for production"},
     {"name": "mms-1b-all", "outcome": "rejected", "reason": "CC-BY-NC-4.0 blocks commercial use"},
     {"name": "canary-1b", "outcome": "rejected", "reason": "CC-BY-NC-4.0 blocks commercial use"}
   ]

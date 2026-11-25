@@ -1,27 +1,8 @@
 {
   "status": "tentative",
-  "confirmIn": "P4-05",
-  "verifiedOn": "2026-11-23",
+  "confirmIn": "P6-09",
+  "verifiedOn": "2026-11-24",
   "primary": {
-    "name": "dfine-small-obstacles-int8",
-    "kind": "model",
-    "version": null,
-    "runtime": "onnxruntime",
-    "placement": "local",
-    "languages": [],
-    "usage": "production",
-    "license": {
-      "name": "Apache-2.0",
-      "commercialUse": "allowed",
-      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
-      "verifiedOn": "2026-11-23"
-    },
-    "sizeMb": 36.19,
-    "sha256": null,
-    "rollbackTarget": null,
-    "notes": "10.4M params fast on device obstacle detection"
-  },
-  "fallback": {
     "name": "efficientdet-lite0-int8",
     "kind": "model",
     "version": null,
@@ -38,7 +19,26 @@
     "sizeMb": 4.4,
     "sha256": null,
     "rollbackTarget": null,
-    "notes": "lightweight fallback for older phones"
+    "notes": "respects SDD 1.5s local router timeout LiteRT artifact pending export in P6-09"
+  },
+  "fallback": {
+    "name": "dfine-small-obstacles-int8",
+    "kind": "model",
+    "version": "0.1.0-p2-base",
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "baseline_only",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.43,
+    "sha256": "34b328ec83411818f2bcc745c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "dfine-small-fp32@0.1.0-p2-base",
+    "notes": "CPU latency 1.45s mean and 1.63s p95 cool or 2.65s warm exceeds 1.5s SDD timeout without NNAPI or GPU delegate"
   },
   "considered": [
     {"name": "ssd-mobilenetv2", "outcome": "deferred", "reason": "lower accuracy than efficientdet lite0"}

@@ -6,6 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
+# vision dependencies and paddleocr join in phase 4 P4 10 for ocr handler
 COPY requirements-service.txt .
 RUN pip install --no-cache-dir -r requirements-service.txt
 
