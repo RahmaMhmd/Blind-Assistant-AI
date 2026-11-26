@@ -1,0 +1,91 @@
+
+normalization:
+  default:
+    char_map:
+      "أ": "ا"   
+      "إ": "ا"  
+      "آ": "ا"   
+      "ى": "ي"   
+      "ة": "ه"   
+      "ؤ": "ء"   
+      "ئ": "ء"   
+      "٫": "."   
+    remove_pattern: "[\u064B-\u065F\u0670\u0640]"
+    digits_from: "٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹"
+    digits_to: "01234567890123456789"
+    punctuation_pattern: "[^\\w\\s.]|_|(?<!\\d)\\.|\\.(?!\\d)"
+    lowercase: true
+  profiles:
+    ocr:
+      punctuation_pattern: null
+paths:
+  testsets_dir: data/eval
+
+models:
+  fake-speech:
+    task: speech_recognition
+    adapter: fake
+    params:
+      output: "افتح الكاميرا"
+
+  whisper-small-eg:
+    task: speech_recognition
+    adapter: whisper
+    params: &whisper_small_eg
+      model_id: tawreck-hasaballah/whisper-small-eg
+      language: arabic
+      sampling_rate: 16000
+      chunk_length_s: 30
+
+ 
+  whisper-small-eg-nochunk:
+    task: speech_recognition
+    adapter: whisper
+    params:
+      <<: *whisper_small_eg
+      chunk_length_s: null
+
+
+  whisper-small-eg-beam:
+    task: speech_recognition
+    adapter: whisper
+    params:
+      <<: *whisper_small_eg
+      chunk_length_s: null
+      generate_kwargs:
+        num_beams: 5
+
+  paddleocr-arabic-rec:
+    task: ocr
+    adapter: paddle_recognizer
+    params:
+      model_name: arabic_PP-OCRv5_mobile_rec
+
+  mobilenetv3-large-100:
+    task: image_classification
+    adapter: mobilenet
+    params:
+      model_id: timm/mobilenetv3_large_100.ra_in1k
+
+  camelbert-da-intent:
+    task: intent_classification
+    adapter: camelbert
+    params:
+      model_id: CAMeL-Lab/bert-base-arabic-camelbert-da
+
+  camelbert-da-intent-ft:
+    task: intent_classification
+    adapter: camelbert
+    params:
+      model_id: models/checkpoints/camelbert_intent
+
+
+prepare_ocr_words:
+  ignore_text: "###"  
+  min_side_px: 12     
+
+
+tracking:
+  database: mlflow.db   
+  experiment: Blind Assistant Experiments  
+  run_type: evaluation  

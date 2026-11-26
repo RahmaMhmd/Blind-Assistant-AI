@@ -1,0 +1,6 @@
+outs:
+- md5: 8daa5df8142660e139417b20d6223bfc.dir
+  size: 6800559
+  nfiles: 301
+  hash: md5
+  path: qr-barcode

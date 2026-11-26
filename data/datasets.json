@@ -1,0 +1,40 @@
+{
+  "datasets": {
+    "ocr-text": {
+      "kind": "image",
+      "labels": {"language": ["ar", "en", "mixed"], "text": null}
+    },
+    "image-quality": {
+      "kind": "image",
+      "labels": {"quality": ["sharp", "blur", "dark"]}
+    },
+    "qr-barcode": {
+      "kind": "image",
+      "labels": {"code_kind": ["qr", "barcode"], "value": null}
+    },
+    "currency": {
+      "kind": "image",
+      "labels": {
+        "denomination": ["5", "10", "20", "50", "100", "200"],
+        "condition": ["good", "worn", "folded"]
+      }
+    },
+    "voice-commands": {
+      "kind": "audio",
+      "labels": {
+        "intent": [
+          "READ_DOCUMENT",
+          "RECOGNIZE_CURRENCY",
+          "INDOOR_NAVIGATION",
+          "DESCRIBE_SCENE",
+          "DETECT_COLOR",
+          "READ_TRAFFIC_SIGN",
+          "DETECT_OBSTACLE",
+          "DETECT_EXPRESSION",
+          "GENERAL_SPEECH"
+        ],
+        "transcript": null
+      }
+    }
+  }
+}

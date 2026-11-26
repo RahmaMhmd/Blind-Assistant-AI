@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P5-12",
+  "verifiedOn": "2026-11-25",
+  "primary": {
+    "name": "mobilenetv3-large-egp-int8",
+    "kind": "model",
+    "version": "0.2.0-p2-egp",
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "baseline_only",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/timm/mobilenetv3_large_100.ra_in1k",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 4.46,
+    "sha256": "6cbe08aa6f695a0464612c07eb21248f18fef7ac2b3386c926a305185aaf531d",
+    "rollbackTarget": "mobilenetv3-large-egp-fp32@0.2.0-p2-egp",
+    "notes": "FP32 96.90 pct and INT8 82.93 pct on 451 currency_test agreement 0.90 percentile 31.8 ms median 35.2 ms p95 on Xiaomi 2410FPCC5G run 2 license unverified"
+  },
+  "fallback": {
+    "name": "dfine-small-egp-currency-int8",
+    "kind": "model",
+    "version": "0.1.0-p2-base",
+    "runtime": "onnxruntime",
+    "placement": "cloud",
+    "languages": [],
+    "usage": "baseline_only",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/ustc-community/dfine-small-coco",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 36.43,
+    "sha256": "34b328ec83411818f2bcc745c22e228e51c0d51e5d6c3c9de3f417059a98374e",
+    "rollbackTarget": "dfine-small-fp32@0.1.0-p2-base",
+    "notes": "cloud backup detector for multi note localization pending EGP fine tuning in P5-12"
+  },
+  "considered": [
+    {"name": "yolov8-currency", "outcome": "rejected", "reason": "AGPL-3.0 license blocks commercial shipping"}
+  ]
+}

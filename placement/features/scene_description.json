@@ -1,0 +1,48 @@
+{
+  "status": "tentative",
+  "confirmIn": "P5-10",
+  "verifiedOn": "2026-11-23",
+  "primary": {
+    "name": "qwen2.5-vl-7b-instruct",
+    "kind": "model",
+    "version": null,
+    "runtime": "transformers",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar", "en"],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 15816.1,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "Apache-2.0 verified 8.29B params strong Arabic visual QA on GPU"
+  },
+  "fallback": {
+    "name": "internvl3.5-8b",
+    "kind": "model",
+    "version": null,
+    "runtime": "transformers",
+    "placement": "cloud",
+    "languages": ["ar-EG", "ar", "en"],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://huggingface.co/OpenGVLab/InternVL3_5-8B",
+      "verifiedOn": "2026-11-23"
+    },
+    "sizeMb": 16266.6,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "Apache-2.0 verified 8.53B params strong multilingual cloud VLM"
+  },
+  "considered": [
+    {"name": "moondream2", "outcome": "baseline", "reason": "Apache-2.0 1.9B small fast VLM baseline"},
+    {"name": "florence-2-large", "outcome": "deferred", "reason": "MIT weak Arabic output"},
+    {"name": "smolvlm2-500m", "outcome": "deferred", "reason": "Apache-2.0 too small for good Arabic descriptions"}
+  ]
+}

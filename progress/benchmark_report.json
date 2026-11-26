@@ -1,0 +1,12 @@
+{
+  "deviceBefore": {"model": "Xiaomi 2410FPCC5G", "sdkInt": 36, "abis": ["arm64-v8a", "armeabi-v7a", "armeabi"], "availMemMb": 2953, "nativeHeapMb": 17.16, "batteryPct": 27, "tempC": 34, "thermalStatus": 0},
+  "deviceAfter": {"model": "Xiaomi 2410FPCC5G", "sdkInt": 36, "abis": ["arm64-v8a", "armeabi-v7a", "armeabi"], "availMemMb": 2759, "nativeHeapMb": 44.87, "batteryPct": 27, "tempC": 36, "thermalStatus": 0},
+  "results": [
+    {"name": "rtdetrv2_r18_int8", "status": "ok", "memDeltaMb": 66.11, "tempBeforeC": 34, "tempAfterC": 36, "detail": "", "meanMs": 2181.088400150001, "medianMs": 2067.762, "p95Ms": 2551.893539, "minMs": 1989.677308, "maxMs": 2929.496846},
+    {"name": "dfine_small_int8", "status": "ok", "memDeltaMb": 66.23, "tempBeforeC": 36, "tempAfterC": 36, "detail": "", "meanMs": 1450.8474422999998, "medianMs": 1438.6038465, "p95Ms": 1632.484924, "minMs": 1353.221308, "maxMs": 1641.433615},
+    {"name": "mobilenetv3_large_int8", "status": "ok", "memDeltaMb": -0.17, "tempBeforeC": 36, "tempAfterC": 36, "detail": "", "meanMs": 28.343780900000006, "medianMs": 28.5408845, "p95Ms": 30.846462, "minMs": 23.047385, "maxMs": 31.45877},
+    {"name": "mlkit_barcode", "status": "ok", "memDeltaMb": 5.81, "tempBeforeC": 36, "tempAfterC": 36, "detail": "real_qr_eval", "correctRate": 0.5411764705882353, "wrongRate": 0.2549019607843137, "total": 255, "correct": 138, "meanMs": 35.44711703529412, "medianMs": 35.234077, "p95Ms": 48.85977, "minMs": 6.346692, "maxMs": 135.161},
+    {"name": "mlkit_text_en", "status": "ok", "memDeltaMb": 25.4, "tempBeforeC": 36, "tempAfterC": 36, "detail": "real_ocr_en", "correctRate": 0.8333333333333334, "wrongRate": 0.15, "total": 60, "correct": 50, "meanMs": 74.25726271666666, "medianMs": 72.97865350000001, "p95Ms": 100.466769, "minMs": 40.573923, "maxMs": 109.038692},
+    {"name": "mlkit_text_ar", "status": "ok", "memDeltaMb": 8.62, "tempBeforeC": 36, "tempAfterC": 36, "detail": "real_ocr_ar", "correctRate": 0, "wrongRate": 0.13333333333333333, "total": 60, "correct": 0, "meanMs": 81.0128359166667, "medianMs": 79.2167695, "p95Ms": 115.204, "minMs": 42.076077, "maxMs": 122.061308}
+  ]
+}

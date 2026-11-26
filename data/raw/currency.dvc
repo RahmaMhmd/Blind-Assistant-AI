@@ -1,0 +1,6 @@
+outs:
+- md5: 8048cb8dea8a8663cf4edd3ef5fefb1a.dir
+  size: 406651604
+  nfiles: 2042
+  hash: md5
+  path: currency

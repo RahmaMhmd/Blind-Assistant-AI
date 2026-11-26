@@ -1,0 +1,6 @@
+outs:
+- md5: ee6194708faec31a157bb29f4ef78452.dir
+  size: 58035710
+  nfiles: 450
+  hash: md5
+  path: image-quality

@@ -1,0 +1,39 @@
+{
+  "warmupRuns": 3,
+  "timedRuns": 20,
+  "reportFile": "benchmark_report.json",
+  "onnxModels": [
+    {
+      "name": "rtdetrv2_r18_int8",
+      "file": "rtdetrv2_r18_int8.onnx",
+      "inputName": "pixel_values",
+      "inputSize": 640
+    },
+    {
+      "name": "dfine_small_int8",
+      "file": "dfine_small_int8.onnx",
+      "inputName": "pixel_values",
+      "inputSize": 640
+    },
+    {
+      "name": "mobilenetv3_large_int8",
+      "file": "mobilenetv3_large_int8.onnx",
+      "inputName": "pixel_values",
+      "inputSize": 224
+    },
+    {
+      "name": "mobilenetv3_large_egp_int8",
+      "file": "mobilenetv3_large_egp_int8.onnx",
+      "inputName": "pixel_values",
+      "inputSize": 224
+    }
+  ],
+  "tfliteModels": [
+    {
+      "name": "efficientdet_lite0_int8",
+      "file": "efficientdet_lite0_int8.tflite"
+    }
+  ],
+  "barcodeWidth": 640,
+  "barcodeHeight": 480
+}

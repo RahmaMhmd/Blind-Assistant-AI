@@ -1,0 +1,46 @@
+{
+  "status": "tentative",
+  "confirmIn": "P4-08",
+  "verifiedOn": "2026-11-24",
+  "primary": {
+    "name": "opencv-laplacian-brightness",
+    "kind": "algorithm",
+    "version": null,
+    "runtime": "opencv",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "Apache-2.0",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://pypi.org/project/opencv-python-headless/",
+      "verifiedOn": "2026-11-21"
+    },
+    "sizeMb": 0,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "calibrated on public scene-text crops sharp 96.6/82.4 blur 91.2/88.6 dark 82.9/97.1 pct recalibrate on real phone camera frames in P4-08"
+  },
+  "fallback": {
+    "name": "mobilenetv3-quality-classifier",
+    "kind": "model",
+    "version": null,
+    "runtime": "onnxruntime",
+    "placement": "local",
+    "languages": [],
+    "usage": "production",
+    "license": {
+      "name": "BSD-3-Clause",
+      "commercialUse": "allowed",
+      "sourceUrl": "https://github.com/pytorch/vision/blob/main/LICENSE",
+      "verifiedOn": "2026-11-21"
+    },
+    "sizeMb": 9.8,
+    "sha256": null,
+    "rollbackTarget": null,
+    "notes": "train only if OpenCV thresholds miss the target. torchvision MobileNetV3-Small pretrained weights are BSD-3-Clause at 9.8 MB FP32"
+  },
+  "considered": [
+    {"name": "pyiqa-musiq-maniqa", "outcome": "research_only", "reason": "cloud comparison only and not inside the app"}
+  ]
+}

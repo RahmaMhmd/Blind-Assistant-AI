@@ -1,0 +1,6 @@
+outs:
+- md5: 63f45a899aa1fcc2020cf03572559aca.dir
+  size: 144433039
+  nfiles: 3
+  hash: md5
+  path: onnx_fp32

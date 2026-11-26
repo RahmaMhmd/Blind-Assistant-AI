@@ -1,0 +1,14 @@
+{
+  "deviceBefore": {"model":"Xiaomi 2410FPCC5G","sdkInt":36,"abis":["arm64-v8a","armeabi-v7a","armeabi"],"availMemMb":2711,"nativeHeapMb":16.45,"batteryPct":99,"tempC":34,"thermalStatus":0},
+  "deviceAfter": {"model":"Xiaomi 2410FPCC5G","sdkInt":36,"abis":["arm64-v8a","armeabi-v7a","armeabi"],"availMemMb":3120,"nativeHeapMb":44.66,"batteryPct":99,"tempC":35,"thermalStatus":0},
+  "results": [
+    {"name":"rtdetrv2_r18_int8","status":"ok","memDeltaMb":66.14,"tempBeforeC":34,"tempAfterC":34,"detail":"","meanMs":2088.79383495,"medianMs":2028.0930775000002,"p95Ms":2347.579693,"minMs":1957.155923,"maxMs":2490.601154},
+    {"name":"dfine_small_int8","status":"ok","memDeltaMb":66.22,"tempBeforeC":34,"tempAfterC":35,"detail":"","meanMs":1425.40684245,"medianMs":1351.7107695,"p95Ms":1964.660308,"minMs":1311.246693,"maxMs":2036.322231},
+    {"name":"mobilenetv3_large_int8","status":"ok","memDeltaMb":-0.25,"tempBeforeC":35,"tempAfterC":35,"detail":"","meanMs":52.573292300000006,"medianMs":48.714653999999996,"p95Ms":96.071693,"minMs":25.26377,"maxMs":102.987692},
+    {"name":"mobilenetv3_large_egp_int8","status":"ok","memDeltaMb":8.14,"tempBeforeC":35,"tempAfterC":35,"detail":"","meanMs":31.158522950000002,"medianMs":31.787692500000002,"p95Ms":35.159308,"minMs":24.188385,"maxMs":37.880076},
+    {"name":"efficientdet_lite0_int8","status":"ok","memDeltaMb":-0.3,"tempBeforeC":35,"tempAfterC":35,"detail":"","meanMs":100.48739225,"medianMs":100.528269,"p95Ms":101.237539,"minMs":99.576077,"maxMs":101.919},
+    {"name":"mlkit_barcode","status":"ok","memDeltaMb":5.73,"tempBeforeC":35,"tempAfterC":35,"detail":"real_qr_eval","correctRate":0.5411764705882353,"wrongRate":0.2549019607843137,"total":255,"correct":138,"meanMs":34.7381785960784,"medianMs":34.730384,"p95Ms":51.179077,"minMs":4.676,"maxMs":141.726154},
+    {"name":"mlkit_text_en","status":"ok","memDeltaMb":25.38,"tempBeforeC":35,"tempAfterC":35,"detail":"real_ocr_en","correctRate":0.8333333333333334,"wrongRate":0.15,"total":60,"correct":50,"meanMs":84.96817043333337,"medianMs":83.7671925,"p95Ms":114.574077,"minMs":35.691769,"maxMs":119.426692},
+    {"name":"mlkit_text_ar","status":"ok","memDeltaMb":-0.92,"tempBeforeC":35,"tempAfterC":35,"detail":"real_ocr_ar","correctRate":0,"wrongRate":0.13333333333333333,"total":60,"correct":0,"meanMs":79.44531536666668,"medianMs":74.5617695,"p95Ms":116.514077,"minMs":47.200307,"maxMs":120.878385}
+  ]
+}
